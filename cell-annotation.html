@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Cell: annotation | ALL metabolism analysis</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Cell: annotation | ALL metabolism analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Cell: annotation | ALL metabolism analysis" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Tuantuan Gui" />
+
+
+<meta name="date" content="2024-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cell-ab-data-process.html"/>
+<link rel="next" href="cell-combine-the-data-from-ab-and-xcms.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ALL Metabolimics PNAS</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> the ALL metabolism analysis</a></li>
+<li class="chapter" data-level="2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html"><i class="fa fa-check"></i><b>2</b> serum: 2020 data preprocess</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#positive"><i class="fa fa-check"></i><b>2.1</b> positive</a></li>
+<li class="chapter" data-level="2.2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#negative"><i class="fa fa-check"></i><b>2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html"><i class="fa fa-check"></i><b>3</b> serum: 2021 data preprocess</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#positive-1"><i class="fa fa-check"></i><b>3.1</b> positive</a></li>
+<li class="chapter" data-level="3.2" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#negative-1"><i class="fa fa-check"></i><b>3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html"><i class="fa fa-check"></i><b>4</b> serum: metID data anatation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2020"><i class="fa fa-check"></i><b>4.1</b> serum 2020</a></li>
+<li class="chapter" data-level="4.2" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2021"><i class="fa fa-check"></i><b>4.2</b> serum 2021</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><a href="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><i class="fa fa-check"></i><b>5</b> serum: combine data from AB, metID and metDNA of serum 2020 and serum 2021</a></li>
+<li class="chapter" data-level="6" data-path="serum-combine-data-from-positive-and-negative.html"><a href="serum-combine-data-from-positive-and-negative.html"><i class="fa fa-check"></i><b>6</b> serum: combine data from positive and negative</a></li>
+<li class="chapter" data-level="7" data-path="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><i class="fa fa-check"></i><b>7</b> serum: batch effection of data from serum 2020 and serum 2021 using sva</a></li>
+<li class="chapter" data-level="8" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html"><i class="fa fa-check"></i><b>8</b> Cell: AB data process</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#filter-the-metabolites-too-much-na-and-impute-the-na"><i class="fa fa-check"></i><b>8.1</b> filter the metabolites (too much NA) and impute the NA</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#positive-2"><i class="fa fa-check"></i><b>8.1.1</b> positive</a></li>
+<li class="chapter" data-level="8.1.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#negative-2"><i class="fa fa-check"></i><b>8.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#transform-the-metabolite-name-to-refmet-name"><i class="fa fa-check"></i><b>8.2</b> transform the metabolite name to refmet name</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#positive-3"><i class="fa fa-check"></i><b>8.2.1</b> positive</a></li>
+<li class="chapter" data-level="8.2.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#negative-3"><i class="fa fa-check"></i><b>8.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#filter-the-metabolite-based-on-the-library-hit"><i class="fa fa-check"></i><b>8.3</b> filter the metabolite based on the library hit</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#positive-4"><i class="fa fa-check"></i><b>8.3.1</b> positive</a></li>
+<li class="chapter" data-level="8.3.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#negative-4"><i class="fa fa-check"></i><b>8.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#filter-metabolite-by-manual-check"><i class="fa fa-check"></i><b>8.4</b> filter metabolite by manual check</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cell-annotation.html"><a href="cell-annotation.html"><i class="fa fa-check"></i><b>9</b> Cell: annotation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="cell-annotation.html"><a href="cell-annotation.html#metid"><i class="fa fa-check"></i><b>9.1</b> metID</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-5"><i class="fa fa-check"></i><b>9.1.1</b> positive</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-5"><i class="fa fa-check"></i><b>9.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cell-annotation.html"><a href="cell-annotation.html#metdna"><i class="fa fa-check"></i><b>9.2</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-6"><i class="fa fa-check"></i><b>9.2.1</b> positive</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-6"><i class="fa fa-check"></i><b>9.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cell-annotation.html"><a href="cell-annotation.html#combine-the-data-from-metid-and-metdna"><i class="fa fa-check"></i><b>9.3</b> combine the data from metID and metDNA</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-7"><i class="fa fa-check"></i><b>9.3.1</b> positive</a></li>
+<li class="chapter" data-level="9.3.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-7"><i class="fa fa-check"></i><b>9.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="cell-annotation.html"><a href="cell-annotation.html#transform-metabolite-name-to-refmet-name"><i class="fa fa-check"></i><b>9.4</b> transform metabolite name to refmet name</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-8"><i class="fa fa-check"></i><b>9.4.1</b> positive</a></li>
+<li class="chapter" data-level="9.4.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-8"><i class="fa fa-check"></i><b>9.4.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html"><i class="fa fa-check"></i><b>10</b> Cell: combine the data from AB and xcms</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#combine-the-data-from-ab-and-xcms"><i class="fa fa-check"></i><b>10.1</b> combine the data from AB and xcms</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#positive-9"><i class="fa fa-check"></i><b>10.1.1</b> positive</a></li>
+<li class="chapter" data-level="10.1.2" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#negative-9"><i class="fa fa-check"></i><b>10.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#transform-the-format-to-serrf"><i class="fa fa-check"></i><b>10.2</b> transform the format to serrf</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#positive-10"><i class="fa fa-check"></i><b>10.2.1</b> positive</a></li>
+<li class="chapter" data-level="10.2.2" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#negative-10"><i class="fa fa-check"></i><b>10.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#rsd"><i class="fa fa-check"></i><b>10.3</b> RSD</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cell-combine-positive.html"><a href="cell-combine-positive.html"><i class="fa fa-check"></i><b>11</b> Cell: combine positive</a></li>
+<li class="chapter" data-level="12" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html"><i class="fa fa-check"></i><b>12</b> Cell: metabolite info</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#ab"><i class="fa fa-check"></i><b>12.1</b> AB</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#positive-11"><i class="fa fa-check"></i><b>12.1.1</b> positive</a></li>
+<li class="chapter" data-level="12.1.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#negative-11"><i class="fa fa-check"></i><b>12.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#metid-1"><i class="fa fa-check"></i><b>12.2</b> metID</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#positive-12"><i class="fa fa-check"></i><b>12.2.1</b> positive</a></li>
+<li class="chapter" data-level="12.2.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#negative-12"><i class="fa fa-check"></i><b>12.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#metdna-1"><i class="fa fa-check"></i><b>12.3</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#positive-13"><i class="fa fa-check"></i><b>12.3.1</b> positive</a></li>
+<li class="chapter" data-level="12.3.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#negative-13"><i class="fa fa-check"></i><b>12.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#combine-the-data-from-abmetid-and-metdna"><i class="fa fa-check"></i><b>12.4</b> combine the data from AB,metID and metDNA</a></li>
+<li class="chapter" data-level="12.5" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#compare-with-the-local-cas-id"><i class="fa fa-check"></i><b>12.5</b> compare with the local CAS ID</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cell-qc.html"><a href="cell-qc.html"><i class="fa fa-check"></i><b>13</b> Cell: QC</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="cell-qc.html"><a href="cell-qc.html#pca"><i class="fa fa-check"></i><b>13.1</b> PCA</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="cell-qc.html"><a href="cell-qc.html#positive-14"><i class="fa fa-check"></i><b>13.1.1</b> positive</a></li>
+<li class="chapter" data-level="13.1.2" data-path="cell-qc.html"><a href="cell-qc.html#negative-14"><i class="fa fa-check"></i><b>13.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="cell-qc.html"><a href="cell-qc.html#the-distribution-of-every-metabolite"><i class="fa fa-check"></i><b>13.2</b> the distribution of every metabolite</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="cell-qc.html"><a href="cell-qc.html#positive-15"><i class="fa fa-check"></i><b>13.2.1</b> positive</a></li>
+<li class="chapter" data-level="13.2.2" data-path="cell-qc.html"><a href="cell-qc.html#negative-15"><i class="fa fa-check"></i><b>13.2.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html"><i class="fa fa-check"></i><b>14</b> Cell: filter metabolites and samples</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html#filter-out-c053"><i class="fa fa-check"></i><b>14.1</b> filter out C053</a></li>
+<li class="chapter" data-level="14.2" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html#filter-compound"><i class="fa fa-check"></i><b>14.2</b> filter compound</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html#filter-compound-in-2023.11.08"><i class="fa fa-check"></i><b>14.2.1</b> filter compound in 2023.11.08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cell-rsd.html"><a href="cell-rsd.html"><i class="fa fa-check"></i><b>15</b> Cell: RSD</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="cell-rsd.html"><a href="cell-rsd.html#after"><i class="fa fa-check"></i><b>15.1</b> after</a></li>
+<li class="chapter" data-level="15.2" data-path="cell-rsd.html"><a href="cell-rsd.html#rsd-1"><i class="fa fa-check"></i><b>15.2</b> RSD</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="figure-1.html"><a href="figure-1.html"><i class="fa fa-check"></i><b>16</b> Figure 1</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="figure-1.html"><a href="figure-1.html#b-annotated-metabolites"><i class="fa fa-check"></i><b>16.1</b> (B) Annotated metabolites</a></li>
+<li class="chapter" data-level="16.2" data-path="figure-1.html"><a href="figure-1.html#c-comprehensive-metabolome-overview"><i class="fa fa-check"></i><b>16.2</b> (C) Comprehensive metabolome overview</a></li>
+<li class="chapter" data-level="16.3" data-path="figure-1.html"><a href="figure-1.html#s1-a-clinical-characteristics"><i class="fa fa-check"></i><b>16.3</b> (S1 A) Clinical characteristics</a></li>
+<li class="chapter" data-level="16.4" data-path="figure-1.html"><a href="figure-1.html#s1-b-venn-plot"><i class="fa fa-check"></i><b>16.4</b> (S1 B) Venn plot</a></li>
+<li class="chapter" data-level="16.5" data-path="figure-1.html"><a href="figure-1.html#s1-c-waterfall-plot"><i class="fa fa-check"></i><b>16.5</b> (S1 C) Waterfall plot</a></li>
+<li class="chapter" data-level="16.6" data-path="figure-1.html"><a href="figure-1.html#s1-d-scatter-plot"><i class="fa fa-check"></i><b>16.6</b> (S1 D) Scatter plot</a></li>
+<li class="chapter" data-level="16.7" data-path="figure-1.html"><a href="figure-1.html#s2-a-pca"><i class="fa fa-check"></i><b>16.7</b> (S2 A) PCA</a></li>
+<li class="chapter" data-level="16.8" data-path="figure-1.html"><a href="figure-1.html#s2-b-volcano-plot"><i class="fa fa-check"></i><b>16.8</b> (S2 B) Volcano Plot</a></li>
+<li class="chapter" data-level="16.9" data-path="figure-1.html"><a href="figure-1.html#s2-c-msea"><i class="fa fa-check"></i><b>16.9</b> (S2 C) MSEA</a></li>
+<li class="chapter" data-level="16.10" data-path="figure-1.html"><a href="figure-1.html#s2-d-ageing-related-metabolites"><i class="fa fa-check"></i><b>16.10</b> (S2 D) Ageing-related metabolites</a></li>
+<li class="chapter" data-level="16.11" data-path="figure-1.html"><a href="figure-1.html#s2-e-box-plot"><i class="fa fa-check"></i><b>16.11</b> (S2 E) Box plot</a></li>
+<li class="chapter" data-level="16.12" data-path="figure-1.html"><a href="figure-1.html#s2-f-overall-survival-analysis"><i class="fa fa-check"></i><b>16.12</b> (S2 F) Overall Survival analysis</a></li>
+<li class="chapter" data-level="16.13" data-path="figure-1.html"><a href="figure-1.html#s2-g-box-plot"><i class="fa fa-check"></i><b>16.13</b> (S2 G) Box plot</a></li>
+<li class="chapter" data-level="16.14" data-path="figure-1.html"><a href="figure-1.html#s2-h-metabolism-set-enrichment-analysis"><i class="fa fa-check"></i><b>16.14</b> (S2 H) Metabolism Set Enrichment Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="figure-2.html"><a href="figure-2.html"><i class="fa fa-check"></i><b>17</b> Figure 2</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="figure-2.html"><a href="figure-2.html#a-3d-pca"><i class="fa fa-check"></i><b>17.1</b> (A) 3D PCA</a></li>
+<li class="chapter" data-level="17.2" data-path="figure-2.html"><a href="figure-2.html#b-all-vs-hc"><i class="fa fa-check"></i><b>17.2</b> (B) ALL vs HC</a></li>
+<li class="chapter" data-level="17.3" data-path="figure-2.html"><a href="figure-2.html#c-intracellular-metabolome-landscape"><i class="fa fa-check"></i><b>17.3</b> (C) Intracellular Metabolome Landscape</a></li>
+<li class="chapter" data-level="17.4" data-path="figure-2.html"><a href="figure-2.html#e-bcp-all-vs-t-all"><i class="fa fa-check"></i><b>17.4</b> (E) BCP-ALL vs T-ALL</a></li>
+<li class="chapter" data-level="17.5" data-path="figure-2.html"><a href="figure-2.html#s3-a-correlation-within-bmmc-samples"><i class="fa fa-check"></i><b>17.5</b> (S3 A) Correlation Within BMMC Samples</a></li>
+<li class="chapter" data-level="17.6" data-path="figure-2.html"><a href="figure-2.html#s3-b-correlation-between-hc-pmmc-and-all-bmmc-mrd-"><i class="fa fa-check"></i><b>17.6</b> (S3 B) Correlation Between HC PMMC And ALL BMMC MRD-</a></li>
+<li class="chapter" data-level="17.7" data-path="figure-2.html"><a href="figure-2.html#s3-c-correlation-between-bmmc-and-pbmc"><i class="fa fa-check"></i><b>17.7</b> (S3 C) Correlation Between BMMC And PBMC</a></li>
+<li class="chapter" data-level="17.8" data-path="figure-2.html"><a href="figure-2.html#s3-d-differential-analyses"><i class="fa fa-check"></i><b>17.8</b> (S3 D) Differential Analyses</a></li>
+<li class="chapter" data-level="17.9" data-path="figure-2.html"><a href="figure-2.html#s3-e-volcano-plot-of-bmmc-d0-vs.-mrd-"><i class="fa fa-check"></i><b>17.9</b> (S3 E) Volcano Plot of BMMC-D0 vs. MRD-</a></li>
+<li class="chapter" data-level="17.10" data-path="figure-2.html"><a href="figure-2.html#s3-f-abundance-boxplot"><i class="fa fa-check"></i><b>17.10</b> (S3 F) Abundance Boxplot</a></li>
+<li class="chapter" data-level="17.11" data-path="figure-2.html"><a href="figure-2.html#s3-g-wgcna"><i class="fa fa-check"></i><b>17.11</b> (S3 G) WGCNA</a></li>
+<li class="chapter" data-level="17.12" data-path="figure-2.html"><a href="figure-2.html#s3-h-bar-plot"><i class="fa fa-check"></i><b>17.12</b> (S3 H) bar plot</a></li>
+<li class="chapter" data-level="17.13" data-path="figure-2.html"><a href="figure-2.html#s3-i-venn-diagram"><i class="fa fa-check"></i><b>17.13</b> (S3 I) Venn Diagram</a></li>
+<li class="chapter" data-level="17.14" data-path="figure-2.html"><a href="figure-2.html#s3-j-boxplot"><i class="fa fa-check"></i><b>17.14</b> (S3 J) Boxplot</a></li>
+<li class="chapter" data-level="17.15" data-path="figure-2.html"><a href="figure-2.html#s3-k-pathway-based-analysis"><i class="fa fa-check"></i><b>17.15</b> (S3 K) Pathway-based Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="figure-3.html"><a href="figure-3.html"><i class="fa fa-check"></i><b>18</b> Figure 3</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="figure-3.html"><a href="figure-3.html#a-gsva-scores-for-metabolic-pathways"><i class="fa fa-check"></i><b>18.1</b> (A) GSVA Scores for Metabolic Pathways</a></li>
+<li class="chapter" data-level="18.2" data-path="figure-3.html"><a href="figure-3.html#b-mutations-and-metabolites"><i class="fa fa-check"></i><b>18.2</b> (B) Mutations and Metabolites</a></li>
+<li class="chapter" data-level="18.3" data-path="figure-3.html"><a href="figure-3.html#c-idh12-and-etv6-mutations"><i class="fa fa-check"></i><b>18.3</b> (C) IDH1/2 and ETV6 Mutations</a></li>
+<li class="chapter" data-level="18.4" data-path="figure-3.html"><a href="figure-3.html#d-fusions-and-metabolites"><i class="fa fa-check"></i><b>18.4</b> (D) Fusions and Metabolites</a></li>
+<li class="chapter" data-level="18.5" data-path="figure-3.html"><a href="figure-3.html#e-bcr-abl1-fusion"><i class="fa fa-check"></i><b>18.5</b> (E) BCR-ABL1 Fusion</a></li>
+<li class="chapter" data-level="18.6" data-path="figure-3.html"><a href="figure-3.html#s4-a-metabolic-gene-heatmap"><i class="fa fa-check"></i><b>18.6</b> (S4 A) Metabolic Gene Heatmap</a></li>
+<li class="chapter" data-level="18.7" data-path="figure-3.html"><a href="figure-3.html#s4-b-correlation-within-bmmc-samples"><i class="fa fa-check"></i><b>18.7</b> (S4 B) Correlation Within BMMC Samples</a></li>
+<li class="chapter" data-level="18.8" data-path="figure-3.html"><a href="figure-3.html#s4-c-correlation-of-mrna-expression-of-metabolic-genes"><i class="fa fa-check"></i><b>18.8</b> (S4 C) Correlation of mRNA Expression of Metabolic Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="figure-4.html"><a href="figure-4.html"><i class="fa fa-check"></i><b>19</b> Figure 4</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="figure-4.html"><a href="figure-4.html#a-schematic-workflow"><i class="fa fa-check"></i><b>19.1</b> (A) Schematic Workflow</a></li>
+<li class="chapter" data-level="19.2" data-path="figure-4.html"><a href="figure-4.html#b-discrimination-of-bcp-all-clusters"><i class="fa fa-check"></i><b>19.2</b> (B) Discrimination of BCP-ALL Clusters</a></li>
+<li class="chapter" data-level="19.3" data-path="figure-4.html"><a href="figure-4.html#c-os-in-75-bcp-all-patients"><i class="fa fa-check"></i><b>19.3</b> (C) OS in 75 BCP-ALL patients</a></li>
+<li class="chapter" data-level="19.4" data-path="figure-4.html"><a href="figure-4.html#d-multivariate-cox-analysis"><i class="fa fa-check"></i><b>19.4</b> (D) Multivariate Cox Analysis</a></li>
+<li class="chapter" data-level="19.5" data-path="figure-4.html"><a href="figure-4.html#e-subnetwork-between-bc3-and-bc12"><i class="fa fa-check"></i><b>19.5</b> (E) Subnetwork between BC3 and BC1/2</a></li>
+<li class="chapter" data-level="19.6" data-path="figure-4.html"><a href="figure-4.html#f-discrimination-of-t-all-clusters"><i class="fa fa-check"></i><b>19.6</b> (F) Discrimination of T-ALL Clusters</a></li>
+<li class="chapter" data-level="19.7" data-path="figure-4.html"><a href="figure-4.html#g-os-of-tc12"><i class="fa fa-check"></i><b>19.7</b> (G) OS of TC1/2</a></li>
+<li class="chapter" data-level="19.8" data-path="figure-4.html"><a href="figure-4.html#h-subnetwork-between-tc2-and-tc1"><i class="fa fa-check"></i><b>19.8</b> (H) Subnetwork between TC2 and TC1</a></li>
+<li class="chapter" data-level="19.9" data-path="figure-4.html"><a href="figure-4.html#s5-a-clusters-of-bcp-all"><i class="fa fa-check"></i><b>19.9</b> (S5 A) Clusters of BCP-ALL</a></li>
+<li class="chapter" data-level="19.10" data-path="figure-4.html"><a href="figure-4.html#s5-e-waterfall-plot-of-bc123"><i class="fa fa-check"></i><b>19.10</b> (S5 E) Waterfall plot of BC1/2/3</a></li>
+<li class="chapter" data-level="19.11" data-path="figure-4.html"><a href="figure-4.html#s5-h-da-score-of-bc3-cluster"><i class="fa fa-check"></i><b>19.11</b> (S5 H) DA-score of BC3 cluster</a></li>
+<li class="chapter" data-level="19.12" data-path="figure-4.html"><a href="figure-4.html#s5-i-j-msea-of-bc123"><i class="fa fa-check"></i><b>19.12</b> (S5 I-J) MSEA of BC1/2/3</a></li>
+<li class="chapter" data-level="19.13" data-path="figure-4.html"><a href="figure-4.html#s6-a-clusters-of-t-all"><i class="fa fa-check"></i><b>19.13</b> (S6 A) Clusters of T-ALL</a></li>
+<li class="chapter" data-level="19.14" data-path="figure-4.html"><a href="figure-4.html#s6-e-f-rfs-and-efs-of-tc12"><i class="fa fa-check"></i><b>19.14</b> (S6 E-F) RFS and EFS of TC1/2</a></li>
+<li class="chapter" data-level="19.15" data-path="figure-4.html"><a href="figure-4.html#s6-h-multivariate-cox-analysis-of-tc12"><i class="fa fa-check"></i><b>19.15</b> (S6 H) Multivariate Cox Analysis of TC1/2</a></li>
+<li class="chapter" data-level="19.16" data-path="figure-4.html"><a href="figure-4.html#s6-i-heatmap-of-tc12"><i class="fa fa-check"></i><b>19.16</b> (S6 I) Heatmap of TC1/2</a></li>
+<li class="chapter" data-level="19.17" data-path="figure-4.html"><a href="figure-4.html#s6-j-da-score-of-tc12"><i class="fa fa-check"></i><b>19.17</b> (S6 J) DA score of TC1/2</a></li>
+<li class="chapter" data-level="19.18" data-path="figure-4.html"><a href="figure-4.html#s6-k-l-msea-of-tc12"><i class="fa fa-check"></i><b>19.18</b> (S6 K-L) MSEA of TC1/2</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ALL metabolism analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cell-annotation" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Cell: annotation<a href="cell-annotation.html#cell-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="metid" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> metID<a href="cell-annotation.html#metid" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>服务器上用metID对各个QC样本代谢物做鉴定，鉴定后对鉴定的代谢物做筛选</p>
+<div id="positive-5" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> positive<a href="cell-annotation.html#positive-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="cell-annotation.html#cb17-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-2"><a href="cell-annotation.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="cell-annotation.html#cb17-3" tabindex="-1"></a>file<span class="ot">=</span><span class="fu">list.files</span>(<span class="st">&quot;positive/&quot;</span>)</span>
+<span id="cb17-4"><a href="cell-annotation.html#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="cell-annotation.html#cb17-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;positive/&quot;</span>,file[<span class="dv">1</span>]))</span>
+<span id="cb17-6"><a href="cell-annotation.html#cb17-6" tabindex="-1"></a><span class="fu">names</span>(result)[<span class="dv">2</span>] <span class="ot">&lt;-</span> file[<span class="dv">1</span>]</span>
+<span id="cb17-7"><a href="cell-annotation.html#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="cell-annotation.html#cb17-8" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> file[<span class="dv">2</span><span class="sc">:</span><span class="dv">20</span>]) {</span>
+<span id="cb17-9"><a href="cell-annotation.html#cb17-9" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;positive/&quot;</span>,i))</span>
+<span id="cb17-10"><a href="cell-annotation.html#cb17-10" tabindex="-1"></a>  <span class="fu">names</span>(dat)[<span class="dv">2</span>] <span class="ot">&lt;-</span> i</span>
+<span id="cb17-11"><a href="cell-annotation.html#cb17-11" tabindex="-1"></a>  result <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb17-12"><a href="cell-annotation.html#cb17-12" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">full_join</span>(dat,<span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
+<span id="cb17-13"><a href="cell-annotation.html#cb17-13" tabindex="-1"></a>  </span>
+<span id="cb17-14"><a href="cell-annotation.html#cb17-14" tabindex="-1"></a>}</span>
+<span id="cb17-15"><a href="cell-annotation.html#cb17-15" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="cell-annotation.html#cb17-16" tabindex="-1"></a>result<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">is.na</span>(result))</span>
+<span id="cb17-17"><a href="cell-annotation.html#cb17-17" tabindex="-1"></a>result_filter <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb17-18"><a href="cell-annotation.html#cb17-18" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(n<span class="sc">&lt;</span><span class="dv">19</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-19"><a href="cell-annotation.html#cb17-19" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>n)</span>
+<span id="cb17-20"><a href="cell-annotation.html#cb17-20" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="cell-annotation.html#cb17-21" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb17-22"><a href="cell-annotation.html#cb17-22" tabindex="-1"></a>name1 <span class="ot">&lt;-</span> <span class="fu">as.character</span>()</span>
+<span id="cb17-23"><a href="cell-annotation.html#cb17-23" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(result_filter)) {</span>
+<span id="cb17-24"><a href="cell-annotation.html#cb17-24" tabindex="-1"></a>  n[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">as.character</span>(<span class="fu">na.omit</span>(<span class="fu">unique</span>(<span class="fu">as.character</span>(result_filter[i,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(result_filter)])))))</span>
+<span id="cb17-25"><a href="cell-annotation.html#cb17-25" tabindex="-1"></a>  name1[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">as.character</span>(<span class="fu">na.omit</span>(<span class="fu">unique</span>(<span class="fu">as.character</span>(result_filter[i,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(result_filter)])))),<span class="at">collapse=</span><span class="st">&quot;;&quot;</span>)</span>
+<span id="cb17-26"><a href="cell-annotation.html#cb17-26" tabindex="-1"></a>}</span>
+<span id="cb17-27"><a href="cell-annotation.html#cb17-27" tabindex="-1"></a>result_filter<span class="sc">$</span>n <span class="ot">&lt;-</span> n</span>
+<span id="cb17-28"><a href="cell-annotation.html#cb17-28" tabindex="-1"></a>result_filter<span class="sc">$</span>name1 <span class="ot">&lt;-</span> name1</span>
+<span id="cb17-29"><a href="cell-annotation.html#cb17-29" tabindex="-1"></a>result_filter1 <span class="ot">&lt;-</span> result_filter <span class="sc">%&gt;%</span></span>
+<span id="cb17-30"><a href="cell-annotation.html#cb17-30" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">result=</span><span class="fu">ifelse</span>(n<span class="sc">==</span><span class="dv">1</span>,name1,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-31"><a href="cell-annotation.html#cb17-31" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">result1=</span><span class="fu">ifelse</span>(n<span class="sc">!=</span><span class="dv">1</span>,name1,<span class="cn">NA</span>))</span>
+<span id="cb17-32"><a href="cell-annotation.html#cb17-32" tabindex="-1"></a><span class="fu">write.table</span>(result_filter1,<span class="st">&quot;metID/positive_metID_v0920.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="negative-5" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> negative<a href="cell-annotation.html#negative-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="cell-annotation.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-2"><a href="cell-annotation.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="cell-annotation.html#cb18-3" tabindex="-1"></a>file<span class="ot">=</span><span class="fu">list.files</span>(<span class="st">&quot;negative/&quot;</span>)</span>
+<span id="cb18-4"><a href="cell-annotation.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="cell-annotation.html#cb18-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;negative/&quot;</span>,file[<span class="dv">1</span>]))</span>
+<span id="cb18-6"><a href="cell-annotation.html#cb18-6" tabindex="-1"></a><span class="fu">names</span>(result)[<span class="dv">2</span>] <span class="ot">&lt;-</span> file[<span class="dv">1</span>]</span>
+<span id="cb18-7"><a href="cell-annotation.html#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="cell-annotation.html#cb18-8" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> file[<span class="dv">2</span><span class="sc">:</span><span class="dv">21</span>]) {</span>
+<span id="cb18-9"><a href="cell-annotation.html#cb18-9" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;negative/&quot;</span>,i))</span>
+<span id="cb18-10"><a href="cell-annotation.html#cb18-10" tabindex="-1"></a>  <span class="fu">names</span>(dat)[<span class="dv">2</span>] <span class="ot">&lt;-</span> i</span>
+<span id="cb18-11"><a href="cell-annotation.html#cb18-11" tabindex="-1"></a>  result <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb18-12"><a href="cell-annotation.html#cb18-12" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">full_join</span>(dat,<span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
+<span id="cb18-13"><a href="cell-annotation.html#cb18-13" tabindex="-1"></a>  </span>
+<span id="cb18-14"><a href="cell-annotation.html#cb18-14" tabindex="-1"></a>}</span>
+<span id="cb18-15"><a href="cell-annotation.html#cb18-15" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="cell-annotation.html#cb18-16" tabindex="-1"></a>result<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">is.na</span>(result))</span>
+<span id="cb18-17"><a href="cell-annotation.html#cb18-17" tabindex="-1"></a>result_filter <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb18-18"><a href="cell-annotation.html#cb18-18" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(n<span class="sc">&lt;</span><span class="dv">19</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-19"><a href="cell-annotation.html#cb18-19" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>n)</span>
+<span id="cb18-20"><a href="cell-annotation.html#cb18-20" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="cell-annotation.html#cb18-21" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb18-22"><a href="cell-annotation.html#cb18-22" tabindex="-1"></a>name1 <span class="ot">&lt;-</span> <span class="fu">as.character</span>()</span>
+<span id="cb18-23"><a href="cell-annotation.html#cb18-23" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(result_filter)) {</span>
+<span id="cb18-24"><a href="cell-annotation.html#cb18-24" tabindex="-1"></a>  n[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">as.character</span>(<span class="fu">na.omit</span>(<span class="fu">unique</span>(<span class="fu">as.character</span>(result_filter[i,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(result_filter)])))))</span>
+<span id="cb18-25"><a href="cell-annotation.html#cb18-25" tabindex="-1"></a>  name1[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">as.character</span>(<span class="fu">na.omit</span>(<span class="fu">unique</span>(<span class="fu">as.character</span>(result_filter[i,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(result_filter)])))),<span class="at">collapse=</span><span class="st">&quot;;&quot;</span>)</span>
+<span id="cb18-26"><a href="cell-annotation.html#cb18-26" tabindex="-1"></a>}</span>
+<span id="cb18-27"><a href="cell-annotation.html#cb18-27" tabindex="-1"></a>result_filter<span class="sc">$</span>n <span class="ot">&lt;-</span> n</span>
+<span id="cb18-28"><a href="cell-annotation.html#cb18-28" tabindex="-1"></a>result_filter<span class="sc">$</span>name1 <span class="ot">&lt;-</span> name1</span>
+<span id="cb18-29"><a href="cell-annotation.html#cb18-29" tabindex="-1"></a>result_filter1 <span class="ot">&lt;-</span> result_filter <span class="sc">%&gt;%</span></span>
+<span id="cb18-30"><a href="cell-annotation.html#cb18-30" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">result=</span><span class="fu">ifelse</span>(n<span class="sc">==</span><span class="dv">1</span>,name1,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-31"><a href="cell-annotation.html#cb18-31" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">result1=</span><span class="fu">ifelse</span>(n<span class="sc">!=</span><span class="dv">1</span>,name1,<span class="cn">NA</span>))</span>
+<span id="cb18-32"><a href="cell-annotation.html#cb18-32" tabindex="-1"></a><span class="fu">write.table</span>(result_filter1,<span class="st">&quot;metID/negative_metID_v0920.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="metdna" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> metDNA<a href="cell-annotation.html#metdna" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>线上用metDNA进行代谢物做鉴定，接着对鉴定到的代谢物做筛选</p>
+<div id="positive-6" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> positive<a href="cell-annotation.html#positive-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="cell-annotation.html#cb19-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-2"><a href="cell-annotation.html#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="cell-annotation.html#cb19-3" tabindex="-1"></a>metDNA_annotation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;metDNA/positive_MRN.annotation.result.csv&quot;</span>,<span class="at">header=</span>T) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="cell-annotation.html#cb19-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(compound.name)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="cell-annotation.html#cb19-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="cell-annotation.html#cb19-6" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(score,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;Total.score&quot;</span>) <span class="sc">%&gt;%</span> <span class="do">### if the compound.name have more than 1 name, then preserve the first one</span></span>
+<span id="cb19-7"><a href="cell-annotation.html#cb19-7" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(adduct,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;new_adduct&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href="cell-annotation.html#cb19-8" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(compound.name,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;Compound.name&quot;</span>)</span>
+<span id="cb19-9"><a href="cell-annotation.html#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="cell-annotation.html#cb19-10" tabindex="-1"></a><span class="co">#对metDNA对应到peak上</span></span>
+<span id="cb19-11"><a href="cell-annotation.html#cb19-11" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="cell-annotation.html#cb19-12" tabindex="-1"></a><span class="do">### if the compound.name have more than 1 name, then preserve the first one</span></span>
+<span id="cb19-13"><a href="cell-annotation.html#cb19-13" tabindex="-1"></a>metDNA_annotation_filter_temp <span class="ot">&lt;-</span> metDNA_annotation <span class="sc">%&gt;%</span></span>
+<span id="cb19-14"><a href="cell-annotation.html#cb19-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Total.score<span class="sc">&gt;</span><span class="fl">0.7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-15"><a href="cell-annotation.html#cb19-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(new_adduct <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;M+H&quot;</span>,<span class="st">&quot;M+NH4&quot;</span>)) </span>
+<span id="cb19-16"><a href="cell-annotation.html#cb19-16" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="cell-annotation.html#cb19-17" tabindex="-1"></a><span class="do">## then unique the compound.name from the max score</span></span>
+<span id="cb19-18"><a href="cell-annotation.html#cb19-18" tabindex="-1"></a>metDNA_annotation_filter <span class="ot">&lt;-</span> metDNA_annotation_filter_temp <span class="sc">%&gt;%</span></span>
+<span id="cb19-19"><a href="cell-annotation.html#cb19-19" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-20"><a href="cell-annotation.html#cb19-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(Total.score)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-21"><a href="cell-annotation.html#cb19-21" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(Compound.name,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-22"><a href="cell-annotation.html#cb19-22" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>Compound.name<span class="sc">==</span><span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-23"><a href="cell-annotation.html#cb19-23" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">`</span><span class="at">Compound.name</span><span class="st">`</span>,name)</span>
+<span id="cb19-24"><a href="cell-annotation.html#cb19-24" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="cell-annotation.html#cb19-25" tabindex="-1"></a><span class="fu">write.table</span>(metDNA_annotation_filter,<span class="st">&quot;metDNA/positive_MRN.annotation.filter.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span></code></pre></div>
+</div>
+<div id="negative-6" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> negative<a href="cell-annotation.html#negative-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="cell-annotation.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-2"><a href="cell-annotation.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="cell-annotation.html#cb20-3" tabindex="-1"></a>metDNA_annotation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;metDNA/negative_MRN.annotation.result.csv&quot;</span>,<span class="at">header=</span>T) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="cell-annotation.html#cb20-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(compound.name)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="cell-annotation.html#cb20-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="cell-annotation.html#cb20-6" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(score,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;Total.score&quot;</span>) <span class="sc">%&gt;%</span> <span class="do">### if the compound.name have more than 1 name, then preserve the first one</span></span>
+<span id="cb20-7"><a href="cell-annotation.html#cb20-7" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(adduct,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;new_adduct&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-8"><a href="cell-annotation.html#cb20-8" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(compound.name,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;Compound.name&quot;</span>)</span>
+<span id="cb20-9"><a href="cell-annotation.html#cb20-9" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="cell-annotation.html#cb20-10" tabindex="-1"></a><span class="co">#对metDNA对应到peak上</span></span>
+<span id="cb20-11"><a href="cell-annotation.html#cb20-11" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="cell-annotation.html#cb20-12" tabindex="-1"></a><span class="do">### if the compound.name have more than 1 name, then preserve the first one</span></span>
+<span id="cb20-13"><a href="cell-annotation.html#cb20-13" tabindex="-1"></a>metDNA_annotation_filter_temp <span class="ot">&lt;-</span> metDNA_annotation <span class="sc">%&gt;%</span></span>
+<span id="cb20-14"><a href="cell-annotation.html#cb20-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Total.score<span class="sc">&gt;</span><span class="fl">0.7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-15"><a href="cell-annotation.html#cb20-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(new_adduct<span class="sc">==</span><span class="st">&quot;M-H&quot;</span>)</span>
+<span id="cb20-16"><a href="cell-annotation.html#cb20-16" tabindex="-1"></a><span class="do">## then unique the compound.name from the max score</span></span>
+<span id="cb20-17"><a href="cell-annotation.html#cb20-17" tabindex="-1"></a>metDNA_annotation_filter <span class="ot">&lt;-</span> metDNA_annotation_filter_temp <span class="sc">%&gt;%</span></span>
+<span id="cb20-18"><a href="cell-annotation.html#cb20-18" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-19"><a href="cell-annotation.html#cb20-19" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(Total.score)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-20"><a href="cell-annotation.html#cb20-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(Compound.name,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-21"><a href="cell-annotation.html#cb20-21" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>Compound.name<span class="sc">==</span><span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-22"><a href="cell-annotation.html#cb20-22" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">`</span><span class="at">Compound.name</span><span class="st">`</span>,name)</span>
+<span id="cb20-23"><a href="cell-annotation.html#cb20-23" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="cell-annotation.html#cb20-24" tabindex="-1"></a><span class="fu">write.table</span>(metDNA_annotation_filter,<span class="st">&quot;metDNA/negative_MRN.annotation.filter.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span></code></pre></div>
+</div>
+</div>
+<div id="combine-the-data-from-metid-and-metdna" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> combine the data from metID and metDNA<a href="cell-annotation.html#combine-the-data-from-metid-and-metdna" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-7" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> positive<a href="cell-annotation.html#positive-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="cell-annotation.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-2"><a href="cell-annotation.html#cb21-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-3"><a href="cell-annotation.html#cb21-3" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="cell-annotation.html#cb21-4" tabindex="-1"></a>positive_metID <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;metID/positive_metID_v0920.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="cell-annotation.html#cb21-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="cell-annotation.html#cb21-6" tabindex="-1"></a><span class="co">#  dplyr::filter(!is.na(result_name)) %&gt;%</span></span>
+<span id="cb21-7"><a href="cell-annotation.html#cb21-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(result_name <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href="cell-annotation.html#cb21-8" tabindex="-1"></a><span class="co">#  dplyr::filter(!grepl(&quot;Tentative&quot;,result_high)) %&gt;%</span></span>
+<span id="cb21-9"><a href="cell-annotation.html#cb21-9" tabindex="-1"></a><span class="co">#  dplyr::filter(!grepl(&quot;Glutathione&quot;,result)) %&gt;%</span></span>
+<span id="cb21-10"><a href="cell-annotation.html#cb21-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,result_name) <span class="sc">%&gt;%</span></span>
+<span id="cb21-11"><a href="cell-annotation.html#cb21-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;Compound.name&quot;</span><span class="ot">=</span><span class="st">&quot;result_name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-12"><a href="cell-annotation.html#cb21-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">level=</span><span class="st">&quot;metID&quot;</span>)</span>
+<span id="cb21-13"><a href="cell-annotation.html#cb21-13" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="cell-annotation.html#cb21-14" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="cell-annotation.html#cb21-15" tabindex="-1"></a>positive_metDNA <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;metDNA/positive_MRN.annotation.filter.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-16"><a href="cell-annotation.html#cb21-16" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-17"><a href="cell-annotation.html#cb21-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">level=</span><span class="st">&quot;metDNA&quot;</span>)</span>
+<span id="cb21-18"><a href="cell-annotation.html#cb21-18" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="cell-annotation.html#cb21-19" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(positive_metID,positive_metDNA) <span class="sc">%&gt;%</span></span>
+<span id="cb21-20"><a href="cell-annotation.html#cb21-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">rev</span>(level)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-21"><a href="cell-annotation.html#cb21-21" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(name,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-22"><a href="cell-annotation.html#cb21-22" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="cell-annotation.html#cb21-23" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;raw_data/XCMS-Report-SingleClass_positive.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-24"><a href="cell-annotation.html#cb21-24" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-25"><a href="cell-annotation.html#cb21-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(result,<span class="at">by=</span><span class="st">&quot;name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-26"><a href="cell-annotation.html#cb21-26" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-27"><a href="cell-annotation.html#cb21-27" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb21-28"><a href="cell-annotation.html#cb21-28" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sum=</span><span class="fu">sum</span>(<span class="st">`</span><span class="at">2QC10-Sample167</span><span class="st">`</span>,<span class="st">`</span><span class="at">2QC11-Sample177</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-29"><a href="cell-annotation.html#cb21-29" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(sum)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-30"><a href="cell-annotation.html#cb21-30" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>sum) <span class="sc">%&gt;%</span></span>
+<span id="cb21-31"><a href="cell-annotation.html#cb21-31" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="st">`</span><span class="at">Compound.name</span><span class="st">`</span>,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-32"><a href="cell-annotation.html#cb21-32" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,mz,rt,Compound.name,level,<span class="fu">everything</span>())</span>
+<span id="cb21-33"><a href="cell-annotation.html#cb21-33" tabindex="-1"></a></span>
+<span id="cb21-34"><a href="cell-annotation.html#cb21-34" tabindex="-1"></a><span class="fu">write.table</span>(dat,<span class="st">&quot;result/2.positive_data_xcms_filter.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="negative-7" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> negative<a href="cell-annotation.html#negative-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="cell-annotation.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb22-2"><a href="cell-annotation.html#cb22-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-3"><a href="cell-annotation.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="cell-annotation.html#cb22-4" tabindex="-1"></a>negative_metID <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;metID/negative_metID_v0920.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="cell-annotation.html#cb22-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="cell-annotation.html#cb22-6" tabindex="-1"></a><span class="co">#  dplyr::filter(!is.na(result_name)) %&gt;%</span></span>
+<span id="cb22-7"><a href="cell-annotation.html#cb22-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(result_name <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="cell-annotation.html#cb22-8" tabindex="-1"></a><span class="co">#  dplyr::filter(!grepl(&quot;Tentative&quot;,result_high)) %&gt;%</span></span>
+<span id="cb22-9"><a href="cell-annotation.html#cb22-9" tabindex="-1"></a><span class="co">#  dplyr::filter(!grepl(&quot;Glutathione&quot;,result)) %&gt;%</span></span>
+<span id="cb22-10"><a href="cell-annotation.html#cb22-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,result_name) <span class="sc">%&gt;%</span></span>
+<span id="cb22-11"><a href="cell-annotation.html#cb22-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;Compound.name&quot;</span><span class="ot">=</span><span class="st">&quot;result_name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-12"><a href="cell-annotation.html#cb22-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">level=</span><span class="st">&quot;metID&quot;</span>)</span>
+<span id="cb22-13"><a href="cell-annotation.html#cb22-13" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="cell-annotation.html#cb22-14" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="cell-annotation.html#cb22-15" tabindex="-1"></a>negative_metDNA <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;metDNA/negative_MRN.annotation.filter.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-16"><a href="cell-annotation.html#cb22-16" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-17"><a href="cell-annotation.html#cb22-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">level=</span><span class="st">&quot;metDNA&quot;</span>)</span>
+<span id="cb22-18"><a href="cell-annotation.html#cb22-18" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="cell-annotation.html#cb22-19" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(negative_metID,negative_metDNA) <span class="sc">%&gt;%</span></span>
+<span id="cb22-20"><a href="cell-annotation.html#cb22-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">rev</span>(level)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-21"><a href="cell-annotation.html#cb22-21" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(name,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-22"><a href="cell-annotation.html#cb22-22" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="cell-annotation.html#cb22-23" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;raw_data/XCMS-Report-SingleClass_negative.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-24"><a href="cell-annotation.html#cb22-24" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-25"><a href="cell-annotation.html#cb22-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(result,<span class="at">by=</span><span class="st">&quot;name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-26"><a href="cell-annotation.html#cb22-26" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-27"><a href="cell-annotation.html#cb22-27" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb22-28"><a href="cell-annotation.html#cb22-28" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sum=</span><span class="fu">sum</span>(<span class="st">`</span><span class="at">2QC10-Sample065</span><span class="st">`</span>,<span class="st">`</span><span class="at">2QC11-Sample075</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-29"><a href="cell-annotation.html#cb22-29" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(sum)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-30"><a href="cell-annotation.html#cb22-30" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>sum) <span class="sc">%&gt;%</span></span>
+<span id="cb22-31"><a href="cell-annotation.html#cb22-31" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="st">`</span><span class="at">Compound.name</span><span class="st">`</span>,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-32"><a href="cell-annotation.html#cb22-32" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,mz,rt,Compound.name,level,<span class="fu">everything</span>())</span>
+<span id="cb22-33"><a href="cell-annotation.html#cb22-33" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="cell-annotation.html#cb22-34" tabindex="-1"></a><span class="fu">write.table</span>(dat,<span class="st">&quot;result/2.negative_data_xcms_filter.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="transform-metabolite-name-to-refmet-name" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> transform metabolite name to refmet name<a href="cell-annotation.html#transform-metabolite-name-to-refmet-name" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-8" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> positive<a href="cell-annotation.html#positive-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="cell-annotation.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-2"><a href="cell-annotation.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="cell-annotation.html#cb23-3" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/2.positive_data_xcms_filter.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="cell-annotation.html#cb23-4" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb23-5"><a href="cell-annotation.html#cb23-5" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="cell-annotation.html#cb23-6" tabindex="-1"></a>dat_name2refmet <span class="ot">&lt;-</span> MNet<span class="sc">::</span><span class="fu">name2refmet</span>(dat<span class="sc">$</span>Compound.name)</span>
+<span id="cb23-7"><a href="cell-annotation.html#cb23-7" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="cell-annotation.html#cb23-8" tabindex="-1"></a>result <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="cell-annotation.html#cb23-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(dat_name2refmet,<span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Compound.name&quot;</span><span class="ot">=</span><span class="st">&quot;Input name&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="cell-annotation.html#cb23-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,mz,rt,<span class="st">`</span><span class="at">Compound.name</span><span class="st">`</span>,refmet_name,formula,super_class,main_class,sub_class,<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a href="cell-annotation.html#cb23-11" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb23-12"><a href="cell-annotation.html#cb23-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sum=</span><span class="fu">sum</span>(<span class="st">`</span><span class="at">2QC10-Sample167</span><span class="st">`</span>,<span class="st">`</span><span class="at">2QC11-Sample177</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-13"><a href="cell-annotation.html#cb23-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(sum)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-14"><a href="cell-annotation.html#cb23-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(level)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-15"><a href="cell-annotation.html#cb23-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>sum) <span class="sc">%&gt;%</span></span>
+<span id="cb23-16"><a href="cell-annotation.html#cb23-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(refmet_name,<span class="at">.keep_all =</span> T)</span>
+<span id="cb23-17"><a href="cell-annotation.html#cb23-17" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="cell-annotation.html#cb23-18" tabindex="-1"></a><span class="fu">write.table</span>(result,<span class="st">&quot;result/2.positive_xcms_name2refmet.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="negative-8" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> negative<a href="cell-annotation.html#negative-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="cell-annotation.html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb24-2"><a href="cell-annotation.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="cell-annotation.html#cb24-3" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/2.negative_data_xcms_filter.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="cell-annotation.html#cb24-4" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb24-5"><a href="cell-annotation.html#cb24-5" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="cell-annotation.html#cb24-6" tabindex="-1"></a>dat_name2refmet <span class="ot">&lt;-</span> MNet<span class="sc">::</span><span class="fu">name2refmet</span>(dat<span class="sc">$</span>Compound.name)</span>
+<span id="cb24-7"><a href="cell-annotation.html#cb24-7" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="cell-annotation.html#cb24-8" tabindex="-1"></a>result <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="cell-annotation.html#cb24-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(dat_name2refmet,<span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Compound.name&quot;</span><span class="ot">=</span><span class="st">&quot;Input name&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-10"><a href="cell-annotation.html#cb24-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,mz,rt,<span class="st">`</span><span class="at">Compound.name</span><span class="st">`</span>,refmet_name,formula,super_class,main_class,sub_class,<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-11"><a href="cell-annotation.html#cb24-11" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-12"><a href="cell-annotation.html#cb24-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sum=</span><span class="fu">sum</span>(<span class="st">`</span><span class="at">2QC10-Sample065</span><span class="st">`</span>,<span class="st">`</span><span class="at">2QC11-Sample075</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-13"><a href="cell-annotation.html#cb24-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(sum)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-14"><a href="cell-annotation.html#cb24-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(level)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-15"><a href="cell-annotation.html#cb24-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>sum) <span class="sc">%&gt;%</span></span>
+<span id="cb24-16"><a href="cell-annotation.html#cb24-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(refmet_name,<span class="at">.keep_all =</span> T)</span>
+<span id="cb24-17"><a href="cell-annotation.html#cb24-17" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="cell-annotation.html#cb24-18" tabindex="-1"></a><span class="fu">write.table</span>(result,<span class="st">&quot;result/2.negative_xcms_name2refmet.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cell-ab-data-process.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cell-combine-the-data-from-ab-and-xcms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-Cell_xcms.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

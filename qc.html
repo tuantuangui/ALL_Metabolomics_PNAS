@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 QC | untargeted metabolism analysis</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 QC | untargeted metabolism analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 QC | untargeted metabolism analysis" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Tuantuan Gui" />
+
+
+<meta name="date" content="2024-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="metabolite-info.html"/>
+<link rel="next" href="filter-metabolites-and-samples.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> the untargeted metabolism analysis</a></li>
+<li class="chapter" data-level="2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html"><i class="fa fa-check"></i><b>2</b> serum: 2020 data preprocess</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#positive"><i class="fa fa-check"></i><b>2.1</b> positive</a></li>
+<li class="chapter" data-level="2.2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#negative"><i class="fa fa-check"></i><b>2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html"><i class="fa fa-check"></i><b>3</b> serum: 2021 data preprocess</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#positive-1"><i class="fa fa-check"></i><b>3.1</b> positive</a></li>
+<li class="chapter" data-level="3.2" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#negative-1"><i class="fa fa-check"></i><b>3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html"><i class="fa fa-check"></i><b>4</b> serum: metID data anatation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2020"><i class="fa fa-check"></i><b>4.1</b> serum 2020</a></li>
+<li class="chapter" data-level="4.2" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2021"><i class="fa fa-check"></i><b>4.2</b> serum 2021</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><a href="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><i class="fa fa-check"></i><b>5</b> serum: combine data from AB, metID and metDNA of serum 2020 and serum 2021</a></li>
+<li class="chapter" data-level="6" data-path="serum-combine-data-from-positive-and-negative.html"><a href="serum-combine-data-from-positive-and-negative.html"><i class="fa fa-check"></i><b>6</b> serum: combine data from positive and negative</a></li>
+<li class="chapter" data-level="7" data-path="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><i class="fa fa-check"></i><b>7</b> serum: batch effection of data from serum 2020 and serum 2021 using sva</a></li>
+<li class="chapter" data-level="8" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html"><i class="fa fa-check"></i><b>8</b> The AB data process</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#删除na太多的代谢物以及对na进行填充"><i class="fa fa-check"></i><b>8.1</b> 删除NA太多的代谢物以及对NA进行填充</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#positive-2"><i class="fa fa-check"></i><b>8.1.1</b> positive</a></li>
+<li class="chapter" data-level="8.1.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#negative-2"><i class="fa fa-check"></i><b>8.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#代谢物名称转为refmet-name"><i class="fa fa-check"></i><b>8.2</b> 代谢物名称转为refmet name</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#positive-3"><i class="fa fa-check"></i><b>8.2.1</b> positive</a></li>
+<li class="chapter" data-level="8.2.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#negative-3"><i class="fa fa-check"></i><b>8.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#整合library-hit进行代谢物筛选"><i class="fa fa-check"></i><b>8.3</b> 整合library hit进行代谢物筛选</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#positive-4"><i class="fa fa-check"></i><b>8.3.1</b> positive</a></li>
+<li class="chapter" data-level="8.3.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#negative-4"><i class="fa fa-check"></i><b>8.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#人工对一些相同的物质进行del"><i class="fa fa-check"></i><b>8.4</b> 人工对一些相同的物质进行del</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="annotation.html"><a href="annotation.html"><i class="fa fa-check"></i><b>9</b> annotation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="annotation.html"><a href="annotation.html#metid"><i class="fa fa-check"></i><b>9.1</b> metID</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="annotation.html"><a href="annotation.html#positive-5"><i class="fa fa-check"></i><b>9.1.1</b> positive</a></li>
+<li class="chapter" data-level="9.1.2" data-path="annotation.html"><a href="annotation.html#negative-5"><i class="fa fa-check"></i><b>9.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="annotation.html"><a href="annotation.html#metdna"><i class="fa fa-check"></i><b>9.2</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="annotation.html"><a href="annotation.html#positive-6"><i class="fa fa-check"></i><b>9.2.1</b> positive</a></li>
+<li class="chapter" data-level="9.2.2" data-path="annotation.html"><a href="annotation.html#negative-6"><i class="fa fa-check"></i><b>9.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="annotation.html"><a href="annotation.html#metid和metdna结果合并"><i class="fa fa-check"></i><b>9.3</b> metID和metDNA结果合并</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="annotation.html"><a href="annotation.html#positive-7"><i class="fa fa-check"></i><b>9.3.1</b> positive</a></li>
+<li class="chapter" data-level="9.3.2" data-path="annotation.html"><a href="annotation.html#negative-7"><i class="fa fa-check"></i><b>9.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="annotation.html"><a href="annotation.html#名字转化为refmet-name"><i class="fa fa-check"></i><b>9.4</b> 名字转化为refmet name</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="annotation.html"><a href="annotation.html#positive-8"><i class="fa fa-check"></i><b>9.4.1</b> positive</a></li>
+<li class="chapter" data-level="9.4.2" data-path="annotation.html"><a href="annotation.html#negative-8"><i class="fa fa-check"></i><b>9.4.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html"><i class="fa fa-check"></i><b>10</b> AB和xcms结果合并</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#合并ab和xcms结果"><i class="fa fa-check"></i><b>10.1</b> 合并AB和xcms结果</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#positive-9"><i class="fa fa-check"></i><b>10.1.1</b> positive</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#negative-9"><i class="fa fa-check"></i><b>10.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#转化为serrf需要的格式"><i class="fa fa-check"></i><b>10.2</b> 转化为serrf需要的格式</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#positive-10"><i class="fa fa-check"></i><b>10.2.1</b> positive</a></li>
+<li class="chapter" data-level="10.2.2" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#negative-10"><i class="fa fa-check"></i><b>10.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#rsd"><i class="fa fa-check"></i><b>10.3</b> RSD</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="combine-positive.html"><a href="combine-positive.html"><i class="fa fa-check"></i><b>11</b> combine positive</a></li>
+<li class="chapter" data-level="12" data-path="metabolite-info.html"><a href="metabolite-info.html"><i class="fa fa-check"></i><b>12</b> metabolite info</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="metabolite-info.html"><a href="metabolite-info.html#ab"><i class="fa fa-check"></i><b>12.1</b> AB</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="metabolite-info.html"><a href="metabolite-info.html#positive-11"><i class="fa fa-check"></i><b>12.1.1</b> positive</a></li>
+<li class="chapter" data-level="12.1.2" data-path="metabolite-info.html"><a href="metabolite-info.html#negative-11"><i class="fa fa-check"></i><b>12.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="metabolite-info.html"><a href="metabolite-info.html#metid-1"><i class="fa fa-check"></i><b>12.2</b> metID</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="metabolite-info.html"><a href="metabolite-info.html#positive-12"><i class="fa fa-check"></i><b>12.2.1</b> positive</a></li>
+<li class="chapter" data-level="12.2.2" data-path="metabolite-info.html"><a href="metabolite-info.html#negative-12"><i class="fa fa-check"></i><b>12.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="metabolite-info.html"><a href="metabolite-info.html#metdna-1"><i class="fa fa-check"></i><b>12.3</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="metabolite-info.html"><a href="metabolite-info.html#positive-13"><i class="fa fa-check"></i><b>12.3.1</b> positive</a></li>
+<li class="chapter" data-level="12.3.2" data-path="metabolite-info.html"><a href="metabolite-info.html#negative-13"><i class="fa fa-check"></i><b>12.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="metabolite-info.html"><a href="metabolite-info.html#合并abmetidmetdna的结果"><i class="fa fa-check"></i><b>12.4</b> 合并AB,metID,metDNA的结果</a></li>
+<li class="chapter" data-level="12.5" data-path="metabolite-info.html"><a href="metabolite-info.html#和本地库的cas-id比对"><i class="fa fa-check"></i><b>12.5</b> 和本地库的CAS ID比对</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="qc.html"><a href="qc.html"><i class="fa fa-check"></i><b>13</b> QC</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="qc.html"><a href="qc.html#pca"><i class="fa fa-check"></i><b>13.1</b> PCA</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="qc.html"><a href="qc.html#positive-14"><i class="fa fa-check"></i><b>13.1.1</b> positive</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qc.html"><a href="qc.html#negative-14"><i class="fa fa-check"></i><b>13.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qc.html"><a href="qc.html#每个代谢物的分布"><i class="fa fa-check"></i><b>13.2</b> 每个代谢物的分布</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="qc.html"><a href="qc.html#positive-15"><i class="fa fa-check"></i><b>13.2.1</b> positive</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qc.html"><a href="qc.html#negative-15"><i class="fa fa-check"></i><b>13.2.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html"><i class="fa fa-check"></i><b>14</b> filter metabolites and samples</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#filter-out-c053"><i class="fa fa-check"></i><b>14.1</b> filter out C053</a></li>
+<li class="chapter" data-level="14.2" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#filter-compound"><i class="fa fa-check"></i><b>14.2</b> filter compound</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#filter-compound-in-2023.11.08"><i class="fa fa-check"></i><b>14.2.1</b> filter compound in 2023.11.08</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#section"><i class="fa fa-check"></i><b>14.3</b> </a></li>
+<li class="chapter" data-level="14.4" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#after"><i class="fa fa-check"></i><b>14.4</b> after</a></li>
+<li class="chapter" data-level="14.5" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#rsd-1"><i class="fa fa-check"></i><b>14.5</b> RSD</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">untargeted metabolism analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="qc" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> QC<a href="qc.html#qc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pca" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> PCA<a href="qc.html#pca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-14" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> positive<a href="qc.html#positive-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="qc.html#cb39-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb39-2"><a href="qc.html#cb39-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-3"><a href="qc.html#cb39-3" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="qc.html#cb39-4" tabindex="-1"></a>before_normalization_raw <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/positive_for_serrf.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-5"><a href="qc.html#cb39-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb39-6"><a href="qc.html#cb39-6" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="qc.html#cb39-7" tabindex="-1"></a>before_normalization <span class="ot">&lt;-</span> before_normalization_raw <span class="sc">%&gt;%</span></span>
+<span id="cb39-8"><a href="qc.html#cb39-8" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-9"><a href="qc.html#cb39-9" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-10"><a href="qc.html#cb39-10" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>V4 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>,<span class="st">&quot;label&quot;</span>))</span>
+<span id="cb39-11"><a href="qc.html#cb39-11" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="qc.html#cb39-12" tabindex="-1"></a><span class="fu">names</span>(before_normalization) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[,<span class="dv">2</span>])</span>
+<span id="cb39-13"><a href="qc.html#cb39-13" tabindex="-1"></a><span class="fu">names</span>(before_normalization)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">&quot;sample_id&quot;</span></span>
+<span id="cb39-14"><a href="qc.html#cb39-14" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="qc.html#cb39-15" tabindex="-1"></a><span class="co"># pca</span></span>
+<span id="cb39-16"><a href="qc.html#cb39-16" tabindex="-1"></a>before_batch <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb39-17"><a href="qc.html#cb39-17" tabindex="-1"></a>before_type <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[<span class="dv">2</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb39-18"><a href="qc.html#cb39-18" tabindex="-1"></a>before_sample_id <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[<span class="dv">4</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb39-19"><a href="qc.html#cb39-19" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="qc.html#cb39-20" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">type=</span>before_type,<span class="at">batch=</span>before_batch,<span class="at">sample_id=</span>before_sample_id)</span>
+<span id="cb39-21"><a href="qc.html#cb39-21" tabindex="-1"></a></span>
+<span id="cb39-22"><a href="qc.html#cb39-22" tabindex="-1"></a>mydata_pca <span class="ot">&lt;-</span> <span class="fu">apply</span>(before_normalization[,<span class="dv">5</span><span class="sc">:</span><span class="fu">ncol</span>(before_normalization)],<span class="dv">2</span>,as.numeric)</span>
+<span id="cb39-23"><a href="qc.html#cb39-23" tabindex="-1"></a></span>
+<span id="cb39-24"><a href="qc.html#cb39-24" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">log2</span>(mydata_pca<span class="sc">+</span><span class="dv">1</span>), <span class="at">center =</span> T, <span class="at">scale. =</span> T)</span>
+<span id="cb39-25"><a href="qc.html#cb39-25" tabindex="-1"></a>variance <span class="ot">=</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb39-26"><a href="qc.html#cb39-26" tabindex="-1"></a></span>
+<span id="cb39-27"><a href="qc.html#cb39-27" tabindex="-1"></a>pca.data <span class="ot">=</span> <span class="fu">data.frame</span>(pca<span class="sc">$</span>x,<span class="at">type=</span>before_type,<span class="at">batch=</span>before_batch,<span class="at">sample_id=</span>before_sample_id)</span>
+<span id="cb39-28"><a href="qc.html#cb39-28" tabindex="-1"></a></span>
+<span id="cb39-29"><a href="qc.html#cb39-29" tabindex="-1"></a><span class="co">#col &lt;- hue_pal()(4)</span></span>
+<span id="cb39-30"><a href="qc.html#cb39-30" tabindex="-1"></a></span>
+<span id="cb39-31"><a href="qc.html#cb39-31" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pca.data,<span class="fu">aes</span>(PC1,PC2,<span class="at">color=</span>type,<span class="at">shape=</span>before_batch))<span class="sc">+</span></span>
+<span id="cb39-32"><a href="qc.html#cb39-32" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb39-33"><a href="qc.html#cb39-33" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;#3e68a0&quot;</span>))<span class="sc">+</span></span>
+<span id="cb39-34"><a href="qc.html#cb39-34" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">length</span>(<span class="fu">unique</span>(before_batch))<span class="sc">-</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb39-35"><a href="qc.html#cb39-35" tabindex="-1"></a>  <span class="co">#geom_text(aes(label=sample_id))+</span></span>
+<span id="cb39-36"><a href="qc.html#cb39-36" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb39-37"><a href="qc.html#cb39-37" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb39-38"><a href="qc.html#cb39-38" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>),</span>
+<span id="cb39-39"><a href="qc.html#cb39-39" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb39-40"><a href="qc.html#cb39-40" tabindex="-1"></a></span>
+<span id="cb39-41"><a href="qc.html#cb39-41" tabindex="-1"></a></span>
+<span id="cb39-42"><a href="qc.html#cb39-42" tabindex="-1"></a></span>
+<span id="cb39-43"><a href="qc.html#cb39-43" tabindex="-1"></a>after_normalization_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;result/SERRF/positive_normalized_SERRF.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-44"><a href="qc.html#cb39-44" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-45"><a href="qc.html#cb39-45" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb39-46"><a href="qc.html#cb39-46" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-47"><a href="qc.html#cb39-47" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-48"><a href="qc.html#cb39-48" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-49"><a href="qc.html#cb39-49" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;sample&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-50"><a href="qc.html#cb39-50" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">gsub</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;&quot;</span>,sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-51"><a href="qc.html#cb39-51" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample&quot;</span>)</span>
+<span id="cb39-52"><a href="qc.html#cb39-52" tabindex="-1"></a></span>
+<span id="cb39-53"><a href="qc.html#cb39-53" tabindex="-1"></a></span>
+<span id="cb39-54"><a href="qc.html#cb39-54" tabindex="-1"></a>after_sample_id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(after_normalization_raw)</span>
+<span id="cb39-55"><a href="qc.html#cb39-55" tabindex="-1"></a>after_dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sample_id=</span>after_sample_id) <span class="sc">%&gt;%</span></span>
+<span id="cb39-56"><a href="qc.html#cb39-56" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(dd,<span class="at">by=</span><span class="st">&quot;sample_id&quot;</span>)</span>
+<span id="cb39-57"><a href="qc.html#cb39-57" tabindex="-1"></a></span>
+<span id="cb39-58"><a href="qc.html#cb39-58" tabindex="-1"></a>mydata_pca <span class="ot">&lt;-</span> <span class="fu">apply</span>(after_normalization_raw,<span class="dv">2</span>,as.numeric)</span>
+<span id="cb39-59"><a href="qc.html#cb39-59" tabindex="-1"></a></span>
+<span id="cb39-60"><a href="qc.html#cb39-60" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">log2</span>(mydata_pca<span class="sc">+</span><span class="dv">1</span>), <span class="at">center =</span> T, <span class="at">scale. =</span> T)</span>
+<span id="cb39-61"><a href="qc.html#cb39-61" tabindex="-1"></a>variance <span class="ot">=</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb39-62"><a href="qc.html#cb39-62" tabindex="-1"></a></span>
+<span id="cb39-63"><a href="qc.html#cb39-63" tabindex="-1"></a>pca.data <span class="ot">=</span> <span class="fu">cbind</span>(pca<span class="sc">$</span>x,after_dd)</span>
+<span id="cb39-64"><a href="qc.html#cb39-64" tabindex="-1"></a></span>
+<span id="cb39-65"><a href="qc.html#cb39-65" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pca.data,<span class="fu">aes</span>(PC1,PC2,<span class="at">color=</span>type,<span class="at">shape=</span>batch))<span class="sc">+</span></span>
+<span id="cb39-66"><a href="qc.html#cb39-66" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb39-67"><a href="qc.html#cb39-67" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;#3e68a0&quot;</span>))<span class="sc">+</span></span>
+<span id="cb39-68"><a href="qc.html#cb39-68" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb39-69"><a href="qc.html#cb39-69" tabindex="-1"></a>  <span class="co">#geom_text(aes(label=sample_id))+</span></span>
+<span id="cb39-70"><a href="qc.html#cb39-70" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb39-71"><a href="qc.html#cb39-71" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb39-72"><a href="qc.html#cb39-72" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>),</span>
+<span id="cb39-73"><a href="qc.html#cb39-73" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb39-74"><a href="qc.html#cb39-74" tabindex="-1"></a></span>
+<span id="cb39-75"><a href="qc.html#cb39-75" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/QC/3.pca_positive_raw.pdf&quot;</span>,p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height=</span><span class="dv">4</span>)</span>
+<span id="cb39-76"><a href="qc.html#cb39-76" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/QC/3.pca_positive_normalization.pdf&quot;</span>,p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height=</span><span class="dv">4</span>)</span></code></pre></div>
+</div>
+<div id="negative-14" class="section level3 hasAnchor" number="13.1.2">
+<h3><span class="header-section-number">13.1.2</span> negative<a href="qc.html#negative-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="qc.html#cb40-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb40-2"><a href="qc.html#cb40-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb40-3"><a href="qc.html#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="qc.html#cb40-4" tabindex="-1"></a>before_normalization_raw <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/negative_for_serrf.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="qc.html#cb40-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb40-6"><a href="qc.html#cb40-6" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="qc.html#cb40-7" tabindex="-1"></a>before_normalization <span class="ot">&lt;-</span> before_normalization_raw <span class="sc">%&gt;%</span></span>
+<span id="cb40-8"><a href="qc.html#cb40-8" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-9"><a href="qc.html#cb40-9" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-10"><a href="qc.html#cb40-10" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>V4 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>,<span class="st">&quot;label&quot;</span>))</span>
+<span id="cb40-11"><a href="qc.html#cb40-11" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="qc.html#cb40-12" tabindex="-1"></a><span class="fu">names</span>(before_normalization) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[,<span class="dv">2</span>])</span>
+<span id="cb40-13"><a href="qc.html#cb40-13" tabindex="-1"></a><span class="fu">names</span>(before_normalization)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">&quot;sample_id&quot;</span></span>
+<span id="cb40-14"><a href="qc.html#cb40-14" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="qc.html#cb40-15" tabindex="-1"></a><span class="co"># pca</span></span>
+<span id="cb40-16"><a href="qc.html#cb40-16" tabindex="-1"></a>before_batch <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb40-17"><a href="qc.html#cb40-17" tabindex="-1"></a>before_type <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[<span class="dv">2</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb40-18"><a href="qc.html#cb40-18" tabindex="-1"></a>before_sample_id <span class="ot">&lt;-</span> <span class="fu">as.character</span>(before_normalization_raw[<span class="dv">4</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb40-19"><a href="qc.html#cb40-19" tabindex="-1"></a></span>
+<span id="cb40-20"><a href="qc.html#cb40-20" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">type=</span>before_type,<span class="at">batch=</span>before_batch,<span class="at">sample_id=</span>before_sample_id)</span>
+<span id="cb40-21"><a href="qc.html#cb40-21" tabindex="-1"></a></span>
+<span id="cb40-22"><a href="qc.html#cb40-22" tabindex="-1"></a>mydata_pca <span class="ot">&lt;-</span> <span class="fu">apply</span>(before_normalization[,<span class="dv">5</span><span class="sc">:</span><span class="fu">ncol</span>(before_normalization)],<span class="dv">2</span>,as.numeric)</span>
+<span id="cb40-23"><a href="qc.html#cb40-23" tabindex="-1"></a></span>
+<span id="cb40-24"><a href="qc.html#cb40-24" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">log2</span>(mydata_pca<span class="sc">+</span><span class="dv">1</span>), <span class="at">center =</span> T, <span class="at">scale. =</span> T)</span>
+<span id="cb40-25"><a href="qc.html#cb40-25" tabindex="-1"></a>variance <span class="ot">=</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb40-26"><a href="qc.html#cb40-26" tabindex="-1"></a></span>
+<span id="cb40-27"><a href="qc.html#cb40-27" tabindex="-1"></a>pca.data <span class="ot">=</span> <span class="fu">data.frame</span>(pca<span class="sc">$</span>x,<span class="at">type=</span>before_type,<span class="at">batch=</span>before_batch,<span class="at">sample_id=</span>before_sample_id)</span>
+<span id="cb40-28"><a href="qc.html#cb40-28" tabindex="-1"></a></span>
+<span id="cb40-29"><a href="qc.html#cb40-29" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pca.data,<span class="fu">aes</span>(PC1,PC2,<span class="at">color=</span>type,<span class="at">shape=</span>before_batch))<span class="sc">+</span></span>
+<span id="cb40-30"><a href="qc.html#cb40-30" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb40-31"><a href="qc.html#cb40-31" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;#3e68a0&quot;</span>))<span class="sc">+</span></span>
+<span id="cb40-32"><a href="qc.html#cb40-32" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">length</span>(<span class="fu">unique</span>(before_batch))<span class="sc">-</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb40-33"><a href="qc.html#cb40-33" tabindex="-1"></a>  <span class="co">#geom_text(aes(label=sample_id))+</span></span>
+<span id="cb40-34"><a href="qc.html#cb40-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb40-35"><a href="qc.html#cb40-35" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb40-36"><a href="qc.html#cb40-36" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>),</span>
+<span id="cb40-37"><a href="qc.html#cb40-37" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb40-38"><a href="qc.html#cb40-38" tabindex="-1"></a></span>
+<span id="cb40-39"><a href="qc.html#cb40-39" tabindex="-1"></a></span>
+<span id="cb40-40"><a href="qc.html#cb40-40" tabindex="-1"></a>after_normalization_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;result/SERRF/negative_normalized_SERRF.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-41"><a href="qc.html#cb40-41" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-42"><a href="qc.html#cb40-42" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-43"><a href="qc.html#cb40-43" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-44"><a href="qc.html#cb40-44" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-45"><a href="qc.html#cb40-45" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;sample&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-46"><a href="qc.html#cb40-46" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">gsub</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;&quot;</span>,sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-47"><a href="qc.html#cb40-47" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample&quot;</span>)</span>
+<span id="cb40-48"><a href="qc.html#cb40-48" tabindex="-1"></a></span>
+<span id="cb40-49"><a href="qc.html#cb40-49" tabindex="-1"></a></span>
+<span id="cb40-50"><a href="qc.html#cb40-50" tabindex="-1"></a>after_sample_id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(after_normalization_raw)</span>
+<span id="cb40-51"><a href="qc.html#cb40-51" tabindex="-1"></a>after_dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sample_id=</span>after_sample_id) <span class="sc">%&gt;%</span></span>
+<span id="cb40-52"><a href="qc.html#cb40-52" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(dd,<span class="at">by=</span><span class="st">&quot;sample_id&quot;</span>)</span>
+<span id="cb40-53"><a href="qc.html#cb40-53" tabindex="-1"></a></span>
+<span id="cb40-54"><a href="qc.html#cb40-54" tabindex="-1"></a>mydata_pca <span class="ot">&lt;-</span> <span class="fu">apply</span>(after_normalization_raw,<span class="dv">2</span>,as.numeric)</span>
+<span id="cb40-55"><a href="qc.html#cb40-55" tabindex="-1"></a></span>
+<span id="cb40-56"><a href="qc.html#cb40-56" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">log2</span>(mydata_pca<span class="sc">+</span><span class="dv">1</span>), <span class="at">center =</span> T, <span class="at">scale. =</span> T)</span>
+<span id="cb40-57"><a href="qc.html#cb40-57" tabindex="-1"></a>variance <span class="ot">=</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb40-58"><a href="qc.html#cb40-58" tabindex="-1"></a></span>
+<span id="cb40-59"><a href="qc.html#cb40-59" tabindex="-1"></a>pca.data <span class="ot">=</span> <span class="fu">cbind</span>(pca<span class="sc">$</span>x,after_dd)</span>
+<span id="cb40-60"><a href="qc.html#cb40-60" tabindex="-1"></a></span>
+<span id="cb40-61"><a href="qc.html#cb40-61" tabindex="-1"></a><span class="co">#col &lt;- hue_pal()(4)</span></span>
+<span id="cb40-62"><a href="qc.html#cb40-62" tabindex="-1"></a></span>
+<span id="cb40-63"><a href="qc.html#cb40-63" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pca.data,<span class="fu">aes</span>(PC1,PC2,<span class="at">color=</span>type,<span class="at">shape=</span>batch))<span class="sc">+</span></span>
+<span id="cb40-64"><a href="qc.html#cb40-64" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb40-65"><a href="qc.html#cb40-65" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;#3e68a0&quot;</span>))<span class="sc">+</span></span>
+<span id="cb40-66"><a href="qc.html#cb40-66" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb40-67"><a href="qc.html#cb40-67" tabindex="-1"></a>  <span class="co">#geom_text(aes(label=sample_id))+</span></span>
+<span id="cb40-68"><a href="qc.html#cb40-68" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb40-69"><a href="qc.html#cb40-69" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb40-70"><a href="qc.html#cb40-70" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>),</span>
+<span id="cb40-71"><a href="qc.html#cb40-71" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>,<span class="fu">signif</span>(variance[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb40-72"><a href="qc.html#cb40-72" tabindex="-1"></a></span>
+<span id="cb40-73"><a href="qc.html#cb40-73" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/QC/3.pca_negative_raw.pdf&quot;</span>,p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height=</span><span class="dv">4</span>)</span>
+<span id="cb40-74"><a href="qc.html#cb40-74" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/QC/3.pca_negative_normalization.pdf&quot;</span>,p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height=</span><span class="dv">4</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="每个代谢物的分布" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> 每个代谢物的分布<a href="qc.html#每个代谢物的分布" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-15" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> positive<a href="qc.html#positive-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="qc.html#cb41-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-2"><a href="qc.html#cb41-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb41-3"><a href="qc.html#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="qc.html#cb41-4" tabindex="-1"></a>dat_before <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/positive_for_serrf.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-5"><a href="qc.html#cb41-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>number) <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="qc.html#cb41-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>label <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;batch&quot;</span>,<span class="st">&quot;sampleType&quot;</span>,<span class="st">&quot;label&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-7"><a href="qc.html#cb41-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb41-8"><a href="qc.html#cb41-8" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-9"><a href="qc.html#cb41-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_if</span>(is.character,as.numeric) <span class="sc">%&gt;%</span></span>
+<span id="cb41-10"><a href="qc.html#cb41-10" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-11"><a href="qc.html#cb41-11" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-12"><a href="qc.html#cb41-12" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;sample&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-13"><a href="qc.html#cb41-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">group=</span><span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;QC&quot;</span>,sample),<span class="st">&quot;QC&quot;</span>,<span class="st">&quot;sample&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-14"><a href="qc.html#cb41-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">factor</span>(sample,<span class="at">levels =</span> sample))</span>
+<span id="cb41-15"><a href="qc.html#cb41-15" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="qc.html#cb41-16" tabindex="-1"></a>dat_after <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;result/SERRF/positive_normalized_SERRF.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-17"><a href="qc.html#cb41-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb41-18"><a href="qc.html#cb41-18" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-19"><a href="qc.html#cb41-19" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-20"><a href="qc.html#cb41-20" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-21"><a href="qc.html#cb41-21" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;sample&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-22"><a href="qc.html#cb41-22" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">group=</span><span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;QC&quot;</span>,sample),<span class="st">&quot;QC&quot;</span>,<span class="st">&quot;sample&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-23"><a href="qc.html#cb41-23" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">factor</span>(sample,<span class="at">levels =</span> sample))</span>
+<span id="cb41-24"><a href="qc.html#cb41-24" tabindex="-1"></a></span>
+<span id="cb41-25"><a href="qc.html#cb41-25" tabindex="-1"></a>metabolite_name <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(dat_after),<span class="fu">c</span>(<span class="st">&quot;sample&quot;</span>,<span class="st">&quot;group&quot;</span>))</span>
+<span id="cb41-26"><a href="qc.html#cb41-26" tabindex="-1"></a></span>
+<span id="cb41-27"><a href="qc.html#cb41-27" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> metabolite_name) {</span>
+<span id="cb41-28"><a href="qc.html#cb41-28" tabindex="-1"></a>  dat_before_filter <span class="ot">&lt;-</span> dat_before <span class="sc">%&gt;%</span></span>
+<span id="cb41-29"><a href="qc.html#cb41-29" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sample,group,<span class="fu">all_of</span>(i))</span>
+<span id="cb41-30"><a href="qc.html#cb41-30" tabindex="-1"></a>  <span class="fu">names</span>(dat_before_filter)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb41-31"><a href="qc.html#cb41-31" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat_before_filter,<span class="fu">aes</span>(sample,label))<span class="sc">+</span></span>
+<span id="cb41-32"><a href="qc.html#cb41-32" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>group))<span class="sc">+</span></span>
+<span id="cb41-33"><a href="qc.html#cb41-33" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb41-34"><a href="qc.html#cb41-34" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">size=</span><span class="dv">5</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))<span class="sc">+</span></span>
+<span id="cb41-35"><a href="qc.html#cb41-35" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span>i)</span>
+<span id="cb41-36"><a href="qc.html#cb41-36" tabindex="-1"></a>  </span>
+<span id="cb41-37"><a href="qc.html#cb41-37" tabindex="-1"></a>  </span>
+<span id="cb41-38"><a href="qc.html#cb41-38" tabindex="-1"></a>  dat_after_filter <span class="ot">&lt;-</span> dat_after <span class="sc">%&gt;%</span></span>
+<span id="cb41-39"><a href="qc.html#cb41-39" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sample,group,<span class="fu">all_of</span>(i))</span>
+<span id="cb41-40"><a href="qc.html#cb41-40" tabindex="-1"></a>  <span class="fu">names</span>(dat_after_filter)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb41-41"><a href="qc.html#cb41-41" tabindex="-1"></a>  </span>
+<span id="cb41-42"><a href="qc.html#cb41-42" tabindex="-1"></a>  p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat_after_filter,<span class="fu">aes</span>(sample,label))<span class="sc">+</span></span>
+<span id="cb41-43"><a href="qc.html#cb41-43" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>group))<span class="sc">+</span></span>
+<span id="cb41-44"><a href="qc.html#cb41-44" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb41-45"><a href="qc.html#cb41-45" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">size=</span><span class="dv">5</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))<span class="sc">+</span></span>
+<span id="cb41-46"><a href="qc.html#cb41-46" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span>i)</span>
+<span id="cb41-47"><a href="qc.html#cb41-47" tabindex="-1"></a>  </span>
+<span id="cb41-48"><a href="qc.html#cb41-48" tabindex="-1"></a>  p <span class="ot">&lt;-</span> cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(<span class="at">plotlist =</span> <span class="fu">list</span>(p1,p3),<span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb41-49"><a href="qc.html#cb41-49" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;[/]&quot;</span>,<span class="st">&quot;&quot;</span>,i)</span>
+<span id="cb41-50"><a href="qc.html#cb41-50" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;result/QC/metabolite/positive_&quot;</span>,n,<span class="st">&quot;.pdf&quot;</span>),p,<span class="at">width=</span><span class="dv">12</span>,<span class="at">height =</span> <span class="dv">8</span>)</span>
+<span id="cb41-51"><a href="qc.html#cb41-51" tabindex="-1"></a>}  </span></code></pre></div>
+</div>
+<div id="negative-15" class="section level3 hasAnchor" number="13.2.2">
+<h3><span class="header-section-number">13.2.2</span> negative<a href="qc.html#negative-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="qc.html#cb42-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb42-2"><a href="qc.html#cb42-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb42-3"><a href="qc.html#cb42-3" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="qc.html#cb42-4" tabindex="-1"></a>dat_before <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/negative_for_serrf.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="qc.html#cb42-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>number) <span class="sc">%&gt;%</span></span>
+<span id="cb42-6"><a href="qc.html#cb42-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>label <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;batch&quot;</span>,<span class="st">&quot;sampleType&quot;</span>,<span class="st">&quot;label&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-7"><a href="qc.html#cb42-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb42-8"><a href="qc.html#cb42-8" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-9"><a href="qc.html#cb42-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_if</span>(is.character,as.numeric) <span class="sc">%&gt;%</span></span>
+<span id="cb42-10"><a href="qc.html#cb42-10" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-11"><a href="qc.html#cb42-11" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-12"><a href="qc.html#cb42-12" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;sample&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-13"><a href="qc.html#cb42-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">group=</span><span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;QC&quot;</span>,sample),<span class="st">&quot;QC&quot;</span>,<span class="st">&quot;sample&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-14"><a href="qc.html#cb42-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">factor</span>(sample,<span class="at">levels =</span> sample))</span>
+<span id="cb42-15"><a href="qc.html#cb42-15" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="qc.html#cb42-16" tabindex="-1"></a>dat_after <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;result/SERRF/negative_normalized_SERRF.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-17"><a href="qc.html#cb42-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb42-18"><a href="qc.html#cb42-18" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-19"><a href="qc.html#cb42-19" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-20"><a href="qc.html#cb42-20" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-21"><a href="qc.html#cb42-21" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;sample&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-22"><a href="qc.html#cb42-22" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">group=</span><span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;QC&quot;</span>,sample),<span class="st">&quot;QC&quot;</span>,<span class="st">&quot;sample&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-23"><a href="qc.html#cb42-23" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample=</span><span class="fu">factor</span>(sample,<span class="at">levels =</span> sample))</span>
+<span id="cb42-24"><a href="qc.html#cb42-24" tabindex="-1"></a></span>
+<span id="cb42-25"><a href="qc.html#cb42-25" tabindex="-1"></a>metabolite_name <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(dat_after),<span class="fu">c</span>(<span class="st">&quot;sample&quot;</span>,<span class="st">&quot;group&quot;</span>))</span>
+<span id="cb42-26"><a href="qc.html#cb42-26" tabindex="-1"></a></span>
+<span id="cb42-27"><a href="qc.html#cb42-27" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> metabolite_name) {</span>
+<span id="cb42-28"><a href="qc.html#cb42-28" tabindex="-1"></a>  dat_before_filter <span class="ot">&lt;-</span> dat_before <span class="sc">%&gt;%</span></span>
+<span id="cb42-29"><a href="qc.html#cb42-29" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sample,group,<span class="fu">all_of</span>(i))</span>
+<span id="cb42-30"><a href="qc.html#cb42-30" tabindex="-1"></a>  <span class="fu">names</span>(dat_before_filter)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb42-31"><a href="qc.html#cb42-31" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat_before_filter,<span class="fu">aes</span>(sample,label))<span class="sc">+</span></span>
+<span id="cb42-32"><a href="qc.html#cb42-32" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>group))<span class="sc">+</span></span>
+<span id="cb42-33"><a href="qc.html#cb42-33" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb42-34"><a href="qc.html#cb42-34" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">size=</span><span class="dv">5</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))<span class="sc">+</span></span>
+<span id="cb42-35"><a href="qc.html#cb42-35" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span>i)</span>
+<span id="cb42-36"><a href="qc.html#cb42-36" tabindex="-1"></a>  </span>
+<span id="cb42-37"><a href="qc.html#cb42-37" tabindex="-1"></a>  </span>
+<span id="cb42-38"><a href="qc.html#cb42-38" tabindex="-1"></a>  dat_after_filter <span class="ot">&lt;-</span> dat_after <span class="sc">%&gt;%</span></span>
+<span id="cb42-39"><a href="qc.html#cb42-39" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sample,group,<span class="fu">all_of</span>(i))</span>
+<span id="cb42-40"><a href="qc.html#cb42-40" tabindex="-1"></a>  <span class="fu">names</span>(dat_after_filter)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb42-41"><a href="qc.html#cb42-41" tabindex="-1"></a>  </span>
+<span id="cb42-42"><a href="qc.html#cb42-42" tabindex="-1"></a>  p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat_after_filter,<span class="fu">aes</span>(sample,label))<span class="sc">+</span></span>
+<span id="cb42-43"><a href="qc.html#cb42-43" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>group))<span class="sc">+</span></span>
+<span id="cb42-44"><a href="qc.html#cb42-44" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb42-45"><a href="qc.html#cb42-45" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">size=</span><span class="dv">5</span>,<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))<span class="sc">+</span></span>
+<span id="cb42-46"><a href="qc.html#cb42-46" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span>i)</span>
+<span id="cb42-47"><a href="qc.html#cb42-47" tabindex="-1"></a>  </span>
+<span id="cb42-48"><a href="qc.html#cb42-48" tabindex="-1"></a>  p <span class="ot">&lt;-</span> cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(<span class="at">plotlist =</span> <span class="fu">list</span>(p1,p3),<span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb42-49"><a href="qc.html#cb42-49" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;[/]&quot;</span>,<span class="st">&quot;&quot;</span>,i)</span>
+<span id="cb42-50"><a href="qc.html#cb42-50" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;result/QC/metabolite/negative/negative_&quot;</span>,n,<span class="st">&quot;.pdf&quot;</span>),p,<span class="at">width=</span><span class="dv">12</span>,<span class="at">height =</span> <span class="dv">8</span>)</span>
+<span id="cb42-51"><a href="qc.html#cb42-51" tabindex="-1"></a>}  </span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="metabolite-info.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="filter-metabolites-and-samples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-Cell_QC.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

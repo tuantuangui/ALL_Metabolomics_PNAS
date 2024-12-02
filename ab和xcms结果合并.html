@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 AB和xcms结果合并 | untargeted metabolism analysis</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 AB和xcms结果合并 | untargeted metabolism analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 AB和xcms结果合并 | untargeted metabolism analysis" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Tuantuan Gui" />
+
+
+<meta name="date" content="2024-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="annotation.html"/>
+<link rel="next" href="combine-positive.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> the untargeted metabolism analysis</a></li>
+<li class="chapter" data-level="2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html"><i class="fa fa-check"></i><b>2</b> serum: 2020 data preprocess</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#positive"><i class="fa fa-check"></i><b>2.1</b> positive</a></li>
+<li class="chapter" data-level="2.2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#negative"><i class="fa fa-check"></i><b>2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html"><i class="fa fa-check"></i><b>3</b> serum: 2021 data preprocess</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#positive-1"><i class="fa fa-check"></i><b>3.1</b> positive</a></li>
+<li class="chapter" data-level="3.2" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#negative-1"><i class="fa fa-check"></i><b>3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html"><i class="fa fa-check"></i><b>4</b> serum: metID data anatation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2020"><i class="fa fa-check"></i><b>4.1</b> serum 2020</a></li>
+<li class="chapter" data-level="4.2" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2021"><i class="fa fa-check"></i><b>4.2</b> serum 2021</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><a href="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><i class="fa fa-check"></i><b>5</b> serum: combine data from AB, metID and metDNA of serum 2020 and serum 2021</a></li>
+<li class="chapter" data-level="6" data-path="serum-combine-data-from-positive-and-negative.html"><a href="serum-combine-data-from-positive-and-negative.html"><i class="fa fa-check"></i><b>6</b> serum: combine data from positive and negative</a></li>
+<li class="chapter" data-level="7" data-path="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><i class="fa fa-check"></i><b>7</b> serum: batch effection of data from serum 2020 and serum 2021 using sva</a></li>
+<li class="chapter" data-level="8" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html"><i class="fa fa-check"></i><b>8</b> The AB data process</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#删除na太多的代谢物以及对na进行填充"><i class="fa fa-check"></i><b>8.1</b> 删除NA太多的代谢物以及对NA进行填充</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#positive-2"><i class="fa fa-check"></i><b>8.1.1</b> positive</a></li>
+<li class="chapter" data-level="8.1.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#negative-2"><i class="fa fa-check"></i><b>8.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#代谢物名称转为refmet-name"><i class="fa fa-check"></i><b>8.2</b> 代谢物名称转为refmet name</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#positive-3"><i class="fa fa-check"></i><b>8.2.1</b> positive</a></li>
+<li class="chapter" data-level="8.2.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#negative-3"><i class="fa fa-check"></i><b>8.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#整合library-hit进行代谢物筛选"><i class="fa fa-check"></i><b>8.3</b> 整合library hit进行代谢物筛选</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#positive-4"><i class="fa fa-check"></i><b>8.3.1</b> positive</a></li>
+<li class="chapter" data-level="8.3.2" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#negative-4"><i class="fa fa-check"></i><b>8.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="the-ab-data-process.html"><a href="the-ab-data-process.html#人工对一些相同的物质进行del"><i class="fa fa-check"></i><b>8.4</b> 人工对一些相同的物质进行del</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="annotation.html"><a href="annotation.html"><i class="fa fa-check"></i><b>9</b> annotation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="annotation.html"><a href="annotation.html#metid"><i class="fa fa-check"></i><b>9.1</b> metID</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="annotation.html"><a href="annotation.html#positive-5"><i class="fa fa-check"></i><b>9.1.1</b> positive</a></li>
+<li class="chapter" data-level="9.1.2" data-path="annotation.html"><a href="annotation.html#negative-5"><i class="fa fa-check"></i><b>9.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="annotation.html"><a href="annotation.html#metdna"><i class="fa fa-check"></i><b>9.2</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="annotation.html"><a href="annotation.html#positive-6"><i class="fa fa-check"></i><b>9.2.1</b> positive</a></li>
+<li class="chapter" data-level="9.2.2" data-path="annotation.html"><a href="annotation.html#negative-6"><i class="fa fa-check"></i><b>9.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="annotation.html"><a href="annotation.html#metid和metdna结果合并"><i class="fa fa-check"></i><b>9.3</b> metID和metDNA结果合并</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="annotation.html"><a href="annotation.html#positive-7"><i class="fa fa-check"></i><b>9.3.1</b> positive</a></li>
+<li class="chapter" data-level="9.3.2" data-path="annotation.html"><a href="annotation.html#negative-7"><i class="fa fa-check"></i><b>9.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="annotation.html"><a href="annotation.html#名字转化为refmet-name"><i class="fa fa-check"></i><b>9.4</b> 名字转化为refmet name</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="annotation.html"><a href="annotation.html#positive-8"><i class="fa fa-check"></i><b>9.4.1</b> positive</a></li>
+<li class="chapter" data-level="9.4.2" data-path="annotation.html"><a href="annotation.html#negative-8"><i class="fa fa-check"></i><b>9.4.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html"><i class="fa fa-check"></i><b>10</b> AB和xcms结果合并</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#合并ab和xcms结果"><i class="fa fa-check"></i><b>10.1</b> 合并AB和xcms结果</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#positive-9"><i class="fa fa-check"></i><b>10.1.1</b> positive</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#negative-9"><i class="fa fa-check"></i><b>10.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#转化为serrf需要的格式"><i class="fa fa-check"></i><b>10.2</b> 转化为serrf需要的格式</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#positive-10"><i class="fa fa-check"></i><b>10.2.1</b> positive</a></li>
+<li class="chapter" data-level="10.2.2" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#negative-10"><i class="fa fa-check"></i><b>10.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="ab和xcms结果合并.html"><a href="ab和xcms结果合并.html#rsd"><i class="fa fa-check"></i><b>10.3</b> RSD</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="combine-positive.html"><a href="combine-positive.html"><i class="fa fa-check"></i><b>11</b> combine positive</a></li>
+<li class="chapter" data-level="12" data-path="metabolite-info.html"><a href="metabolite-info.html"><i class="fa fa-check"></i><b>12</b> metabolite info</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="metabolite-info.html"><a href="metabolite-info.html#ab"><i class="fa fa-check"></i><b>12.1</b> AB</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="metabolite-info.html"><a href="metabolite-info.html#positive-11"><i class="fa fa-check"></i><b>12.1.1</b> positive</a></li>
+<li class="chapter" data-level="12.1.2" data-path="metabolite-info.html"><a href="metabolite-info.html#negative-11"><i class="fa fa-check"></i><b>12.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="metabolite-info.html"><a href="metabolite-info.html#metid-1"><i class="fa fa-check"></i><b>12.2</b> metID</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="metabolite-info.html"><a href="metabolite-info.html#positive-12"><i class="fa fa-check"></i><b>12.2.1</b> positive</a></li>
+<li class="chapter" data-level="12.2.2" data-path="metabolite-info.html"><a href="metabolite-info.html#negative-12"><i class="fa fa-check"></i><b>12.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="metabolite-info.html"><a href="metabolite-info.html#metdna-1"><i class="fa fa-check"></i><b>12.3</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="metabolite-info.html"><a href="metabolite-info.html#positive-13"><i class="fa fa-check"></i><b>12.3.1</b> positive</a></li>
+<li class="chapter" data-level="12.3.2" data-path="metabolite-info.html"><a href="metabolite-info.html#negative-13"><i class="fa fa-check"></i><b>12.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="metabolite-info.html"><a href="metabolite-info.html#合并abmetidmetdna的结果"><i class="fa fa-check"></i><b>12.4</b> 合并AB,metID,metDNA的结果</a></li>
+<li class="chapter" data-level="12.5" data-path="metabolite-info.html"><a href="metabolite-info.html#和本地库的cas-id比对"><i class="fa fa-check"></i><b>12.5</b> 和本地库的CAS ID比对</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="qc.html"><a href="qc.html"><i class="fa fa-check"></i><b>13</b> QC</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="qc.html"><a href="qc.html#pca"><i class="fa fa-check"></i><b>13.1</b> PCA</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="qc.html"><a href="qc.html#positive-14"><i class="fa fa-check"></i><b>13.1.1</b> positive</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qc.html"><a href="qc.html#negative-14"><i class="fa fa-check"></i><b>13.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qc.html"><a href="qc.html#每个代谢物的分布"><i class="fa fa-check"></i><b>13.2</b> 每个代谢物的分布</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="qc.html"><a href="qc.html#positive-15"><i class="fa fa-check"></i><b>13.2.1</b> positive</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qc.html"><a href="qc.html#negative-15"><i class="fa fa-check"></i><b>13.2.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html"><i class="fa fa-check"></i><b>14</b> filter metabolites and samples</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#filter-out-c053"><i class="fa fa-check"></i><b>14.1</b> filter out C053</a></li>
+<li class="chapter" data-level="14.2" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#filter-compound"><i class="fa fa-check"></i><b>14.2</b> filter compound</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#filter-compound-in-2023.11.08"><i class="fa fa-check"></i><b>14.2.1</b> filter compound in 2023.11.08</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#section"><i class="fa fa-check"></i><b>14.3</b> </a></li>
+<li class="chapter" data-level="14.4" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#after"><i class="fa fa-check"></i><b>14.4</b> after</a></li>
+<li class="chapter" data-level="14.5" data-path="filter-metabolites-and-samples.html"><a href="filter-metabolites-and-samples.html#rsd-1"><i class="fa fa-check"></i><b>14.5</b> RSD</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">untargeted metabolism analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ab和xcms结果合并" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> AB和xcms结果合并<a href="ab和xcms结果合并.html#ab和xcms结果合并" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="合并ab和xcms结果" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> 合并AB和xcms结果<a href="ab和xcms结果合并.html#合并ab和xcms结果" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-9" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> positive<a href="ab和xcms结果合并.html#positive-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>输出结果后需要人工对refmet name做修正,修正后的文件名为result/positive_all.txt</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ab和xcms结果合并.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb25-2"><a href="ab和xcms结果合并.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="ab和xcms结果合并.html#cb25-3" tabindex="-1"></a>data_ab_positive <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/1.AB_positive_name2refmet_library_result.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="ab和xcms结果合并.html#cb25-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(filter<span class="sc">!=</span><span class="st">&quot;del&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="ab和xcms结果合并.html#cb25-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="ab和xcms结果合并.html#cb25-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Library Hit</span><span class="st">`</span>,<span class="sc">-</span>filter) <span class="sc">%&gt;%</span></span>
+<span id="cb25-7"><a href="ab和xcms结果合并.html#cb25-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">level=</span><span class="st">&quot;AB&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-8"><a href="ab和xcms结果合并.html#cb25-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(level,<span class="fu">everything</span>())</span>
+<span id="cb25-9"><a href="ab和xcms结果合并.html#cb25-9" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="ab和xcms结果合并.html#cb25-10" tabindex="-1"></a>data_metid_positive <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/2.positive_xcms_name2refmet.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-11"><a href="ab和xcms结果合并.html#cb25-11" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-12"><a href="ab和xcms结果合并.html#cb25-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>name,<span class="sc">-</span>mz,<span class="sc">-</span>rt) <span class="sc">%&gt;%</span></span>
+<span id="cb25-13"><a href="ab和xcms结果合并.html#cb25-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;label&quot;</span><span class="ot">=</span><span class="st">&quot;Compound.name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-14"><a href="ab和xcms结果合并.html#cb25-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(level,<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb25-15"><a href="ab和xcms结果合并.html#cb25-15" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-16"><a href="ab和xcms结果合并.html#cb25-16" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-17"><a href="ab和xcms结果合并.html#cb25-17" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-18"><a href="ab和xcms结果合并.html#cb25-18" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(a,<span class="at">sep=</span><span class="st">&quot;-&quot;</span>,<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-19"><a href="ab和xcms结果合并.html#cb25-19" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-20"><a href="ab和xcms结果合并.html#cb25-20" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-21"><a href="ab和xcms结果合并.html#cb25-21" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb25-22"><a href="ab和xcms结果合并.html#cb25-22" tabindex="-1"></a>overlap_sample <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(data_ab_positive),<span class="fu">names</span>(data_metid_positive))</span>
+<span id="cb25-23"><a href="ab和xcms结果合并.html#cb25-23" tabindex="-1"></a>data_metid_positive_filter <span class="ot">&lt;-</span> data_metid_positive <span class="sc">%&gt;%</span></span>
+<span id="cb25-24"><a href="ab和xcms结果合并.html#cb25-24" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(overlap_sample) <span class="sc">%&gt;%</span></span>
+<span id="cb25-25"><a href="ab和xcms结果合并.html#cb25-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>refmet_name <span class="sc">%in%</span> data_ab_positive<span class="sc">$</span>refmet_name)</span>
+<span id="cb25-26"><a href="ab和xcms结果合并.html#cb25-26" tabindex="-1"></a></span>
+<span id="cb25-27"><a href="ab和xcms结果合并.html#cb25-27" tabindex="-1"></a>data_ab_positive_filter <span class="ot">&lt;-</span> data_ab_positive <span class="sc">%&gt;%</span></span>
+<span id="cb25-28"><a href="ab和xcms结果合并.html#cb25-28" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(overlap_sample)</span>
+<span id="cb25-29"><a href="ab和xcms结果合并.html#cb25-29" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="ab和xcms结果合并.html#cb25-30" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data_ab_positive_filter,data_metid_positive_filter) <span class="sc">%&gt;%</span></span>
+<span id="cb25-31"><a href="ab和xcms结果合并.html#cb25-31" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb25-32"><a href="ab和xcms结果合并.html#cb25-32" tabindex="-1"></a></span>
+<span id="cb25-33"><a href="ab和xcms结果合并.html#cb25-33" tabindex="-1"></a><span class="fu">write.table</span>(dat,<span class="st">&quot;result/positive_all_temp.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="negative-9" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> negative<a href="ab和xcms结果合并.html#negative-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>输出结果后需要人工对refmet name做修正,修正后的文件名为result/negative_all.txt</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ab和xcms结果合并.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb26-2"><a href="ab和xcms结果合并.html#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="ab和xcms结果合并.html#cb26-3" tabindex="-1"></a>data_ab_negative <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/1.AB_negative_name2refmet_library_result.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="ab和xcms结果合并.html#cb26-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(filter<span class="sc">!=</span><span class="st">&quot;del&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="ab和xcms结果合并.html#cb26-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="ab和xcms结果合并.html#cb26-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Library Hit</span><span class="st">`</span>,<span class="sc">-</span>filter) <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a href="ab和xcms结果合并.html#cb26-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">level=</span><span class="st">&quot;AB&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a href="ab和xcms结果合并.html#cb26-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(level,<span class="fu">everything</span>())</span>
+<span id="cb26-9"><a href="ab和xcms结果合并.html#cb26-9" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="ab和xcms结果合并.html#cb26-10" tabindex="-1"></a>data_metid_negative <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/2.negative_xcms_name2refmet.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-11"><a href="ab和xcms结果合并.html#cb26-11" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-12"><a href="ab和xcms结果合并.html#cb26-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>name,<span class="sc">-</span>mz,<span class="sc">-</span>rt) <span class="sc">%&gt;%</span></span>
+<span id="cb26-13"><a href="ab和xcms结果合并.html#cb26-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;label&quot;</span><span class="ot">=</span><span class="st">&quot;Compound.name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-14"><a href="ab和xcms结果合并.html#cb26-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(level,<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb26-15"><a href="ab和xcms结果合并.html#cb26-15" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-16"><a href="ab和xcms结果合并.html#cb26-16" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-17"><a href="ab和xcms结果合并.html#cb26-17" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-18"><a href="ab和xcms结果合并.html#cb26-18" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(a,<span class="at">sep=</span><span class="st">&quot;-&quot;</span>,<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-19"><a href="ab和xcms结果合并.html#cb26-19" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-20"><a href="ab和xcms结果合并.html#cb26-20" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-21"><a href="ab和xcms结果合并.html#cb26-21" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb26-22"><a href="ab和xcms结果合并.html#cb26-22" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="ab和xcms结果合并.html#cb26-23" tabindex="-1"></a>overlap_sample <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(data_ab_negative),<span class="fu">names</span>(data_metid_negative))</span>
+<span id="cb26-24"><a href="ab和xcms结果合并.html#cb26-24" tabindex="-1"></a>data_metid_negative_filter <span class="ot">&lt;-</span> data_metid_negative <span class="sc">%&gt;%</span></span>
+<span id="cb26-25"><a href="ab和xcms结果合并.html#cb26-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(overlap_sample) <span class="sc">%&gt;%</span></span>
+<span id="cb26-26"><a href="ab和xcms结果合并.html#cb26-26" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>refmet_name <span class="sc">%in%</span> data_ab_negative<span class="sc">$</span>refmet_name)</span>
+<span id="cb26-27"><a href="ab和xcms结果合并.html#cb26-27" tabindex="-1"></a></span>
+<span id="cb26-28"><a href="ab和xcms结果合并.html#cb26-28" tabindex="-1"></a>data_ab_negative_filter <span class="ot">&lt;-</span> data_ab_negative <span class="sc">%&gt;%</span></span>
+<span id="cb26-29"><a href="ab和xcms结果合并.html#cb26-29" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(overlap_sample)</span>
+<span id="cb26-30"><a href="ab和xcms结果合并.html#cb26-30" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="ab和xcms结果合并.html#cb26-31" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data_ab_negative_filter,data_metid_negative_filter) <span class="sc">%&gt;%</span></span>
+<span id="cb26-32"><a href="ab和xcms结果合并.html#cb26-32" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb26-33"><a href="ab和xcms结果合并.html#cb26-33" tabindex="-1"></a></span>
+<span id="cb26-34"><a href="ab和xcms结果合并.html#cb26-34" tabindex="-1"></a><span class="fu">write.table</span>(dat,<span class="st">&quot;result/negative_all_temp.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="转化为serrf需要的格式" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> 转化为serrf需要的格式<a href="ab和xcms结果合并.html#转化为serrf需要的格式" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-10" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> positive<a href="ab和xcms结果合并.html#positive-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="ab和xcms结果合并.html#cb27-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/positive_all.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="ab和xcms结果合并.html#cb27-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="ab和xcms结果合并.html#cb27-3" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="ab和xcms结果合并.html#cb27-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean =</span> <span class="fu">mean</span>(<span class="fu">c_across</span>(<span class="fu">contains</span>(<span class="st">&quot;QC&quot;</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="ab和xcms结果合并.html#cb27-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(mean)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-6"><a href="ab和xcms结果合并.html#cb27-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">match</span>(level,<span class="fu">c</span>(<span class="st">&quot;AB&quot;</span>,<span class="st">&quot;metID&quot;</span>,<span class="st">&quot;metDNA&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb27-7"><a href="ab和xcms结果合并.html#cb27-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-8"><a href="ab和xcms结果合并.html#cb27-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>mean)</span>
+<span id="cb27-9"><a href="ab和xcms结果合并.html#cb27-9" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="ab和xcms结果合并.html#cb27-10" tabindex="-1"></a>order_intersect <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;raw_data/positive_qc_intersect.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-11"><a href="ab和xcms结果合并.html#cb27-11" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-12"><a href="ab和xcms结果合并.html#cb27-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>sample_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;QC11&quot;</span>,<span class="st">&quot;QC12&quot;</span>,<span class="st">&quot;2QC3&quot;</span>,<span class="st">&quot;2QC6&quot;</span>,<span class="st">&quot;2QC9&quot;</span>,<span class="st">&quot;2QC12&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-13"><a href="ab和xcms结果合并.html#cb27-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">type=</span><span class="fu">ifelse</span>(type<span class="sc">==</span><span class="st">&quot;QC&quot;</span>,<span class="st">&quot;qc&quot;</span>,type))</span>
+<span id="cb27-14"><a href="ab和xcms结果合并.html#cb27-14" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="ab和xcms结果合并.html#cb27-15" tabindex="-1"></a><span class="co">#把数据调成serrf所需要的样子</span></span>
+<span id="cb27-16"><a href="ab和xcms结果合并.html#cb27-16" tabindex="-1"></a>all_for_serrf <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb27-17"><a href="ab和xcms结果合并.html#cb27-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>level,<span class="sc">-</span>label,<span class="sc">-</span>refmet_name_raw,<span class="sc">-</span>formula,<span class="sc">-</span>super_class,<span class="sc">-</span>main_class,<span class="sc">-</span>sub_class) <span class="sc">%&gt;%</span></span>
+<span id="cb27-18"><a href="ab和xcms结果合并.html#cb27-18" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;label&quot;</span><span class="ot">=</span><span class="st">&quot;refmet_name&quot;</span>)</span>
+<span id="cb27-19"><a href="ab和xcms结果合并.html#cb27-19" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="ab和xcms结果合并.html#cb27-20" tabindex="-1"></a>overlap_sample <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(all_for_serrf),order_intersect<span class="sc">$</span>sample_id)</span>
+<span id="cb27-21"><a href="ab和xcms结果合并.html#cb27-21" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="ab和xcms结果合并.html#cb27-22" tabindex="-1"></a>qc_intersect_filter <span class="ot">&lt;-</span> order_intersect <span class="sc">%&gt;%</span></span>
+<span id="cb27-23"><a href="ab和xcms结果合并.html#cb27-23" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_id <span class="sc">%in%</span> overlap_sample) <span class="sc">%&gt;%</span></span>
+<span id="cb27-24"><a href="ab和xcms结果合并.html#cb27-24" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(time)</span>
+<span id="cb27-25"><a href="ab和xcms结果合并.html#cb27-25" tabindex="-1"></a>qc_intersect_filter<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">nrow</span>(qc_intersect_filter))</span>
+<span id="cb27-26"><a href="ab和xcms结果合并.html#cb27-26" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="ab和xcms结果合并.html#cb27-27" tabindex="-1"></a>all_for_serrf_filter <span class="ot">&lt;-</span> all_for_serrf <span class="sc">%&gt;%</span></span>
+<span id="cb27-28"><a href="ab和xcms结果合并.html#cb27-28" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;label&quot;</span>,qc_intersect_filter<span class="sc">$</span>sample_id))</span>
+<span id="cb27-29"><a href="ab和xcms结果合并.html#cb27-29" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="ab和xcms结果合并.html#cb27-30" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;batch&quot;</span>,qc_intersect_filter<span class="sc">$</span>batch)</span>
+<span id="cb27-31"><a href="ab和xcms结果合并.html#cb27-31" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sampleType&quot;</span>,qc_intersect_filter<span class="sc">$</span>type)</span>
+<span id="cb27-32"><a href="ab和xcms结果合并.html#cb27-32" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,qc_intersect_filter<span class="sc">$</span>time)</span>
+<span id="cb27-33"><a href="ab和xcms结果合并.html#cb27-33" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(all_for_serrf_filter))</span>
+<span id="cb27-34"><a href="ab和xcms结果合并.html#cb27-34" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="ab和xcms结果合并.html#cb27-35" tabindex="-1"></a>all_result_temp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(batch,type,time,label,all_for_serrf_filter)</span>
+<span id="cb27-36"><a href="ab和xcms结果合并.html#cb27-36" tabindex="-1"></a></span>
+<span id="cb27-37"><a href="ab和xcms结果合并.html#cb27-37" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(all_for_serrf_filter))))</span>
+<span id="cb27-38"><a href="ab和xcms结果合并.html#cb27-38" tabindex="-1"></a>serrf_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(number,all_result_temp)</span>
+<span id="cb27-39"><a href="ab和xcms结果合并.html#cb27-39" tabindex="-1"></a></span>
+<span id="cb27-40"><a href="ab和xcms结果合并.html#cb27-40" tabindex="-1"></a><span class="fu">write.table</span>(serrf_data,<span class="st">&quot;result/positive_for_serrf.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="negative-10" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> negative<a href="ab和xcms结果合并.html#negative-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ab和xcms结果合并.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb28-2"><a href="ab和xcms结果合并.html#cb28-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb28-3"><a href="ab和xcms结果合并.html#cb28-3" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="ab和xcms结果合并.html#cb28-4" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/negative_all.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="ab和xcms结果合并.html#cb28-5" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="ab和xcms结果合并.html#cb28-6" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-7"><a href="ab和xcms结果合并.html#cb28-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean =</span> <span class="fu">mean</span>(<span class="fu">c_across</span>(<span class="fu">contains</span>(<span class="st">&quot;QC&quot;</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb28-8"><a href="ab和xcms结果合并.html#cb28-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(mean)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-9"><a href="ab和xcms结果合并.html#cb28-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">match</span>(level,<span class="fu">c</span>(<span class="st">&quot;AB&quot;</span>,<span class="st">&quot;metID&quot;</span>,<span class="st">&quot;metDNA&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb28-10"><a href="ab和xcms结果合并.html#cb28-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(label,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-11"><a href="ab和xcms结果合并.html#cb28-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>mean)</span>
+<span id="cb28-12"><a href="ab和xcms结果合并.html#cb28-12" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="ab和xcms结果合并.html#cb28-13" tabindex="-1"></a>order_intersect <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;raw_data/negative_qc_intersect.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-14"><a href="ab和xcms结果合并.html#cb28-14" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-15"><a href="ab和xcms结果合并.html#cb28-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>sample_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;2QC3&quot;</span>,<span class="st">&quot;2QC6&quot;</span>,<span class="st">&quot;2QC9&quot;</span>,<span class="st">&quot;2QC12&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-16"><a href="ab和xcms结果合并.html#cb28-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">type=</span><span class="fu">ifelse</span>(type<span class="sc">==</span><span class="st">&quot;QC&quot;</span>,<span class="st">&quot;qc&quot;</span>,type))</span>
+<span id="cb28-17"><a href="ab和xcms结果合并.html#cb28-17" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="ab和xcms结果合并.html#cb28-18" tabindex="-1"></a><span class="co">#把数据调成serrf所需要的样子</span></span>
+<span id="cb28-19"><a href="ab和xcms结果合并.html#cb28-19" tabindex="-1"></a>all_for_serrf <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb28-20"><a href="ab和xcms结果合并.html#cb28-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>level,<span class="sc">-</span>label,<span class="sc">-</span>refmet_name_raw,<span class="sc">-</span>formula,<span class="sc">-</span>super_class,<span class="sc">-</span>main_class,<span class="sc">-</span>sub_class) <span class="sc">%&gt;%</span></span>
+<span id="cb28-21"><a href="ab和xcms结果合并.html#cb28-21" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;label&quot;</span><span class="ot">=</span><span class="st">&quot;refmet_name&quot;</span>)</span>
+<span id="cb28-22"><a href="ab和xcms结果合并.html#cb28-22" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="ab和xcms结果合并.html#cb28-23" tabindex="-1"></a>overlap_sample <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(all_for_serrf),order_intersect<span class="sc">$</span>sample_id)</span>
+<span id="cb28-24"><a href="ab和xcms结果合并.html#cb28-24" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="ab和xcms结果合并.html#cb28-25" tabindex="-1"></a>qc_intersect_filter <span class="ot">&lt;-</span> order_intersect <span class="sc">%&gt;%</span></span>
+<span id="cb28-26"><a href="ab和xcms结果合并.html#cb28-26" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_id <span class="sc">%in%</span> overlap_sample) <span class="sc">%&gt;%</span></span>
+<span id="cb28-27"><a href="ab和xcms结果合并.html#cb28-27" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(time)</span>
+<span id="cb28-28"><a href="ab和xcms结果合并.html#cb28-28" tabindex="-1"></a>qc_intersect_filter<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">nrow</span>(qc_intersect_filter))</span>
+<span id="cb28-29"><a href="ab和xcms结果合并.html#cb28-29" tabindex="-1"></a></span>
+<span id="cb28-30"><a href="ab和xcms结果合并.html#cb28-30" tabindex="-1"></a>all_for_serrf_filter <span class="ot">&lt;-</span> all_for_serrf <span class="sc">%&gt;%</span></span>
+<span id="cb28-31"><a href="ab和xcms结果合并.html#cb28-31" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;label&quot;</span>,qc_intersect_filter<span class="sc">$</span>sample_id))</span>
+<span id="cb28-32"><a href="ab和xcms结果合并.html#cb28-32" tabindex="-1"></a></span>
+<span id="cb28-33"><a href="ab和xcms结果合并.html#cb28-33" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;batch&quot;</span>,qc_intersect_filter<span class="sc">$</span>batch)</span>
+<span id="cb28-34"><a href="ab和xcms结果合并.html#cb28-34" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sampleType&quot;</span>,qc_intersect_filter<span class="sc">$</span>type)</span>
+<span id="cb28-35"><a href="ab和xcms结果合并.html#cb28-35" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,qc_intersect_filter<span class="sc">$</span>time)</span>
+<span id="cb28-36"><a href="ab和xcms结果合并.html#cb28-36" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(all_for_serrf_filter))</span>
+<span id="cb28-37"><a href="ab和xcms结果合并.html#cb28-37" tabindex="-1"></a></span>
+<span id="cb28-38"><a href="ab和xcms结果合并.html#cb28-38" tabindex="-1"></a>all_result_temp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(batch,type,time,label,all_for_serrf_filter)</span>
+<span id="cb28-39"><a href="ab和xcms结果合并.html#cb28-39" tabindex="-1"></a></span>
+<span id="cb28-40"><a href="ab和xcms结果合并.html#cb28-40" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(all_for_serrf_filter))))</span>
+<span id="cb28-41"><a href="ab和xcms结果合并.html#cb28-41" tabindex="-1"></a>serrf_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(number,all_result_temp)</span>
+<span id="cb28-42"><a href="ab和xcms结果合并.html#cb28-42" tabindex="-1"></a><span class="fu">write.table</span>(serrf_data,<span class="st">&quot;result/negative_for_serrf.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="rsd" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> RSD<a href="ab和xcms结果合并.html#rsd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ab和xcms结果合并.html#cb29-1" tabindex="-1"></a>dat_positive_rsd<span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/SERRF/positive_QC-RSDs.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="ab和xcms结果合并.html#cb29-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="ab和xcms结果合并.html#cb29-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(SERRF<span class="sc">&lt;=</span> <span class="fl">0.3</span>)</span>
+<span id="cb29-4"><a href="ab和xcms结果合并.html#cb29-4" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="ab和xcms结果合并.html#cb29-5" tabindex="-1"></a>dat_negative_rsd <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/SERRF/negative_QC-RSDs.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="ab和xcms结果合并.html#cb29-6" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-7"><a href="ab和xcms结果合并.html#cb29-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(SERRF <span class="sc">&lt;=</span> <span class="fl">0.3</span>)</span>
+<span id="cb29-8"><a href="ab和xcms结果合并.html#cb29-8" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="ab和xcms结果合并.html#cb29-9" tabindex="-1"></a>positive <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/SERRF/positive_normalized_SERRF.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-10"><a href="ab和xcms结果合并.html#cb29-10" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-11"><a href="ab和xcms结果合并.html#cb29-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(label <span class="sc">%in%</span> dat_positive_rsd<span class="sc">$</span>label)</span>
+<span id="cb29-12"><a href="ab和xcms结果合并.html#cb29-12" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="ab和xcms结果合并.html#cb29-13" tabindex="-1"></a>negative <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;result/SERRF/negative_normalized_SERRF.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-14"><a href="ab和xcms结果合并.html#cb29-14" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-15"><a href="ab和xcms结果合并.html#cb29-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(label <span class="sc">%in%</span> dat_negative_rsd<span class="sc">$</span>label)</span>
+<span id="cb29-16"><a href="ab和xcms结果合并.html#cb29-16" tabindex="-1"></a><span class="fu">write.table</span>(positive,<span class="st">&quot;result/positive_after_SERRF.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names =</span> F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb29-17"><a href="ab和xcms结果合并.html#cb29-17" tabindex="-1"></a><span class="fu">write.table</span>(negative,<span class="st">&quot;result/negative_after_SERRF.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names =</span> F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="annotation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="combine-positive.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-Cell_combine_AB_xcms.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

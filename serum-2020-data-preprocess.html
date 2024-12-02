@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 serum: 2020 data preprocess | ALL metabolism analysis</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 serum: 2020 data preprocess | ALL metabolism analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 serum: 2020 data preprocess | ALL metabolism analysis" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Tuantuan Gui" />
+
+
+<meta name="date" content="2024-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="serum-2021-data-preprocess.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ALL Metabolimics PNAS</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> the ALL metabolism analysis</a></li>
+<li class="chapter" data-level="2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html"><i class="fa fa-check"></i><b>2</b> serum: 2020 data preprocess</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#positive"><i class="fa fa-check"></i><b>2.1</b> positive</a></li>
+<li class="chapter" data-level="2.2" data-path="serum-2020-data-preprocess.html"><a href="serum-2020-data-preprocess.html#negative"><i class="fa fa-check"></i><b>2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html"><i class="fa fa-check"></i><b>3</b> serum: 2021 data preprocess</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#positive-1"><i class="fa fa-check"></i><b>3.1</b> positive</a></li>
+<li class="chapter" data-level="3.2" data-path="serum-2021-data-preprocess.html"><a href="serum-2021-data-preprocess.html#negative-1"><i class="fa fa-check"></i><b>3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html"><i class="fa fa-check"></i><b>4</b> serum: metID data anatation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2020"><i class="fa fa-check"></i><b>4.1</b> serum 2020</a></li>
+<li class="chapter" data-level="4.2" data-path="serum-metid-data-anatation.html"><a href="serum-metid-data-anatation.html#serum-2021"><i class="fa fa-check"></i><b>4.2</b> serum 2021</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><a href="serum-combine-data-from-ab-metid-and-metdna-of-serum-2020-and-serum-2021.html"><i class="fa fa-check"></i><b>5</b> serum: combine data from AB, metID and metDNA of serum 2020 and serum 2021</a></li>
+<li class="chapter" data-level="6" data-path="serum-combine-data-from-positive-and-negative.html"><a href="serum-combine-data-from-positive-and-negative.html"><i class="fa fa-check"></i><b>6</b> serum: combine data from positive and negative</a></li>
+<li class="chapter" data-level="7" data-path="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="serum-batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><i class="fa fa-check"></i><b>7</b> serum: batch effection of data from serum 2020 and serum 2021 using sva</a></li>
+<li class="chapter" data-level="8" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html"><i class="fa fa-check"></i><b>8</b> Cell: AB data process</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#filter-the-metabolites-too-much-na-and-impute-the-na"><i class="fa fa-check"></i><b>8.1</b> filter the metabolites (too much NA) and impute the NA</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#positive-2"><i class="fa fa-check"></i><b>8.1.1</b> positive</a></li>
+<li class="chapter" data-level="8.1.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#negative-2"><i class="fa fa-check"></i><b>8.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#transform-the-metabolite-name-to-refmet-name"><i class="fa fa-check"></i><b>8.2</b> transform the metabolite name to refmet name</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#positive-3"><i class="fa fa-check"></i><b>8.2.1</b> positive</a></li>
+<li class="chapter" data-level="8.2.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#negative-3"><i class="fa fa-check"></i><b>8.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#filter-the-metabolite-based-on-the-library-hit"><i class="fa fa-check"></i><b>8.3</b> filter the metabolite based on the library hit</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#positive-4"><i class="fa fa-check"></i><b>8.3.1</b> positive</a></li>
+<li class="chapter" data-level="8.3.2" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#negative-4"><i class="fa fa-check"></i><b>8.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="cell-ab-data-process.html"><a href="cell-ab-data-process.html#filter-metabolite-by-manual-check"><i class="fa fa-check"></i><b>8.4</b> filter metabolite by manual check</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cell-annotation.html"><a href="cell-annotation.html"><i class="fa fa-check"></i><b>9</b> Cell: annotation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="cell-annotation.html"><a href="cell-annotation.html#metid"><i class="fa fa-check"></i><b>9.1</b> metID</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-5"><i class="fa fa-check"></i><b>9.1.1</b> positive</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-5"><i class="fa fa-check"></i><b>9.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cell-annotation.html"><a href="cell-annotation.html#metdna"><i class="fa fa-check"></i><b>9.2</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-6"><i class="fa fa-check"></i><b>9.2.1</b> positive</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-6"><i class="fa fa-check"></i><b>9.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cell-annotation.html"><a href="cell-annotation.html#combine-the-data-from-metid-and-metdna"><i class="fa fa-check"></i><b>9.3</b> combine the data from metID and metDNA</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-7"><i class="fa fa-check"></i><b>9.3.1</b> positive</a></li>
+<li class="chapter" data-level="9.3.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-7"><i class="fa fa-check"></i><b>9.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="cell-annotation.html"><a href="cell-annotation.html#transform-metabolite-name-to-refmet-name"><i class="fa fa-check"></i><b>9.4</b> transform metabolite name to refmet name</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="cell-annotation.html"><a href="cell-annotation.html#positive-8"><i class="fa fa-check"></i><b>9.4.1</b> positive</a></li>
+<li class="chapter" data-level="9.4.2" data-path="cell-annotation.html"><a href="cell-annotation.html#negative-8"><i class="fa fa-check"></i><b>9.4.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html"><i class="fa fa-check"></i><b>10</b> Cell: combine the data from AB and xcms</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#combine-the-data-from-ab-and-xcms"><i class="fa fa-check"></i><b>10.1</b> combine the data from AB and xcms</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#positive-9"><i class="fa fa-check"></i><b>10.1.1</b> positive</a></li>
+<li class="chapter" data-level="10.1.2" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#negative-9"><i class="fa fa-check"></i><b>10.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#transform-the-format-to-serrf"><i class="fa fa-check"></i><b>10.2</b> transform the format to serrf</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#positive-10"><i class="fa fa-check"></i><b>10.2.1</b> positive</a></li>
+<li class="chapter" data-level="10.2.2" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#negative-10"><i class="fa fa-check"></i><b>10.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="cell-combine-the-data-from-ab-and-xcms.html"><a href="cell-combine-the-data-from-ab-and-xcms.html#rsd"><i class="fa fa-check"></i><b>10.3</b> RSD</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cell-combine-positive.html"><a href="cell-combine-positive.html"><i class="fa fa-check"></i><b>11</b> Cell: combine positive</a></li>
+<li class="chapter" data-level="12" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html"><i class="fa fa-check"></i><b>12</b> Cell: metabolite info</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#ab"><i class="fa fa-check"></i><b>12.1</b> AB</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#positive-11"><i class="fa fa-check"></i><b>12.1.1</b> positive</a></li>
+<li class="chapter" data-level="12.1.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#negative-11"><i class="fa fa-check"></i><b>12.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#metid-1"><i class="fa fa-check"></i><b>12.2</b> metID</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#positive-12"><i class="fa fa-check"></i><b>12.2.1</b> positive</a></li>
+<li class="chapter" data-level="12.2.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#negative-12"><i class="fa fa-check"></i><b>12.2.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#metdna-1"><i class="fa fa-check"></i><b>12.3</b> metDNA</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#positive-13"><i class="fa fa-check"></i><b>12.3.1</b> positive</a></li>
+<li class="chapter" data-level="12.3.2" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#negative-13"><i class="fa fa-check"></i><b>12.3.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#combine-the-data-from-abmetid-and-metdna"><i class="fa fa-check"></i><b>12.4</b> combine the data from AB,metID and metDNA</a></li>
+<li class="chapter" data-level="12.5" data-path="cell-metabolite-info.html"><a href="cell-metabolite-info.html#compare-with-the-local-cas-id"><i class="fa fa-check"></i><b>12.5</b> compare with the local CAS ID</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cell-qc.html"><a href="cell-qc.html"><i class="fa fa-check"></i><b>13</b> Cell: QC</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="cell-qc.html"><a href="cell-qc.html#pca"><i class="fa fa-check"></i><b>13.1</b> PCA</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="cell-qc.html"><a href="cell-qc.html#positive-14"><i class="fa fa-check"></i><b>13.1.1</b> positive</a></li>
+<li class="chapter" data-level="13.1.2" data-path="cell-qc.html"><a href="cell-qc.html#negative-14"><i class="fa fa-check"></i><b>13.1.2</b> negative</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="cell-qc.html"><a href="cell-qc.html#the-distribution-of-every-metabolite"><i class="fa fa-check"></i><b>13.2</b> the distribution of every metabolite</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="cell-qc.html"><a href="cell-qc.html#positive-15"><i class="fa fa-check"></i><b>13.2.1</b> positive</a></li>
+<li class="chapter" data-level="13.2.2" data-path="cell-qc.html"><a href="cell-qc.html#negative-15"><i class="fa fa-check"></i><b>13.2.2</b> negative</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html"><i class="fa fa-check"></i><b>14</b> Cell: filter metabolites and samples</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html#filter-out-c053"><i class="fa fa-check"></i><b>14.1</b> filter out C053</a></li>
+<li class="chapter" data-level="14.2" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html#filter-compound"><i class="fa fa-check"></i><b>14.2</b> filter compound</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="cell-filter-metabolites-and-samples.html"><a href="cell-filter-metabolites-and-samples.html#filter-compound-in-2023.11.08"><i class="fa fa-check"></i><b>14.2.1</b> filter compound in 2023.11.08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cell-rsd.html"><a href="cell-rsd.html"><i class="fa fa-check"></i><b>15</b> Cell: RSD</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="cell-rsd.html"><a href="cell-rsd.html#after"><i class="fa fa-check"></i><b>15.1</b> after</a></li>
+<li class="chapter" data-level="15.2" data-path="cell-rsd.html"><a href="cell-rsd.html#rsd-1"><i class="fa fa-check"></i><b>15.2</b> RSD</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="figure-1.html"><a href="figure-1.html"><i class="fa fa-check"></i><b>16</b> Figure 1</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="figure-1.html"><a href="figure-1.html#b-annotated-metabolites"><i class="fa fa-check"></i><b>16.1</b> (B) Annotated metabolites</a></li>
+<li class="chapter" data-level="16.2" data-path="figure-1.html"><a href="figure-1.html#c-comprehensive-metabolome-overview"><i class="fa fa-check"></i><b>16.2</b> (C) Comprehensive metabolome overview</a></li>
+<li class="chapter" data-level="16.3" data-path="figure-1.html"><a href="figure-1.html#s1-a-clinical-characteristics"><i class="fa fa-check"></i><b>16.3</b> (S1 A) Clinical characteristics</a></li>
+<li class="chapter" data-level="16.4" data-path="figure-1.html"><a href="figure-1.html#s1-b-venn-plot"><i class="fa fa-check"></i><b>16.4</b> (S1 B) Venn plot</a></li>
+<li class="chapter" data-level="16.5" data-path="figure-1.html"><a href="figure-1.html#s1-c-waterfall-plot"><i class="fa fa-check"></i><b>16.5</b> (S1 C) Waterfall plot</a></li>
+<li class="chapter" data-level="16.6" data-path="figure-1.html"><a href="figure-1.html#s1-d-scatter-plot"><i class="fa fa-check"></i><b>16.6</b> (S1 D) Scatter plot</a></li>
+<li class="chapter" data-level="16.7" data-path="figure-1.html"><a href="figure-1.html#s2-a-pca"><i class="fa fa-check"></i><b>16.7</b> (S2 A) PCA</a></li>
+<li class="chapter" data-level="16.8" data-path="figure-1.html"><a href="figure-1.html#s2-b-volcano-plot"><i class="fa fa-check"></i><b>16.8</b> (S2 B) Volcano Plot</a></li>
+<li class="chapter" data-level="16.9" data-path="figure-1.html"><a href="figure-1.html#s2-c-msea"><i class="fa fa-check"></i><b>16.9</b> (S2 C) MSEA</a></li>
+<li class="chapter" data-level="16.10" data-path="figure-1.html"><a href="figure-1.html#s2-d-ageing-related-metabolites"><i class="fa fa-check"></i><b>16.10</b> (S2 D) Ageing-related metabolites</a></li>
+<li class="chapter" data-level="16.11" data-path="figure-1.html"><a href="figure-1.html#s2-e-box-plot"><i class="fa fa-check"></i><b>16.11</b> (S2 E) Box plot</a></li>
+<li class="chapter" data-level="16.12" data-path="figure-1.html"><a href="figure-1.html#s2-f-overall-survival-analysis"><i class="fa fa-check"></i><b>16.12</b> (S2 F) Overall Survival analysis</a></li>
+<li class="chapter" data-level="16.13" data-path="figure-1.html"><a href="figure-1.html#s2-g-box-plot"><i class="fa fa-check"></i><b>16.13</b> (S2 G) Box plot</a></li>
+<li class="chapter" data-level="16.14" data-path="figure-1.html"><a href="figure-1.html#s2-h-metabolism-set-enrichment-analysis"><i class="fa fa-check"></i><b>16.14</b> (S2 H) Metabolism Set Enrichment Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="figure-2.html"><a href="figure-2.html"><i class="fa fa-check"></i><b>17</b> Figure 2</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="figure-2.html"><a href="figure-2.html#a-3d-pca"><i class="fa fa-check"></i><b>17.1</b> (A) 3D PCA</a></li>
+<li class="chapter" data-level="17.2" data-path="figure-2.html"><a href="figure-2.html#b-all-vs-hc"><i class="fa fa-check"></i><b>17.2</b> (B) ALL vs HC</a></li>
+<li class="chapter" data-level="17.3" data-path="figure-2.html"><a href="figure-2.html#c-intracellular-metabolome-landscape"><i class="fa fa-check"></i><b>17.3</b> (C) Intracellular Metabolome Landscape</a></li>
+<li class="chapter" data-level="17.4" data-path="figure-2.html"><a href="figure-2.html#e-bcp-all-vs-t-all"><i class="fa fa-check"></i><b>17.4</b> (E) BCP-ALL vs T-ALL</a></li>
+<li class="chapter" data-level="17.5" data-path="figure-2.html"><a href="figure-2.html#s3-a-correlation-within-bmmc-samples"><i class="fa fa-check"></i><b>17.5</b> (S3 A) Correlation Within BMMC Samples</a></li>
+<li class="chapter" data-level="17.6" data-path="figure-2.html"><a href="figure-2.html#s3-b-correlation-between-hc-pmmc-and-all-bmmc-mrd-"><i class="fa fa-check"></i><b>17.6</b> (S3 B) Correlation Between HC PMMC And ALL BMMC MRD-</a></li>
+<li class="chapter" data-level="17.7" data-path="figure-2.html"><a href="figure-2.html#s3-c-correlation-between-bmmc-and-pbmc"><i class="fa fa-check"></i><b>17.7</b> (S3 C) Correlation Between BMMC And PBMC</a></li>
+<li class="chapter" data-level="17.8" data-path="figure-2.html"><a href="figure-2.html#s3-d-differential-analyses"><i class="fa fa-check"></i><b>17.8</b> (S3 D) Differential Analyses</a></li>
+<li class="chapter" data-level="17.9" data-path="figure-2.html"><a href="figure-2.html#s3-e-volcano-plot-of-bmmc-d0-vs.-mrd-"><i class="fa fa-check"></i><b>17.9</b> (S3 E) Volcano Plot of BMMC-D0 vs. MRD-</a></li>
+<li class="chapter" data-level="17.10" data-path="figure-2.html"><a href="figure-2.html#s3-f-abundance-boxplot"><i class="fa fa-check"></i><b>17.10</b> (S3 F) Abundance Boxplot</a></li>
+<li class="chapter" data-level="17.11" data-path="figure-2.html"><a href="figure-2.html#s3-g-wgcna"><i class="fa fa-check"></i><b>17.11</b> (S3 G) WGCNA</a></li>
+<li class="chapter" data-level="17.12" data-path="figure-2.html"><a href="figure-2.html#s3-h-bar-plot"><i class="fa fa-check"></i><b>17.12</b> (S3 H) bar plot</a></li>
+<li class="chapter" data-level="17.13" data-path="figure-2.html"><a href="figure-2.html#s3-i-venn-diagram"><i class="fa fa-check"></i><b>17.13</b> (S3 I) Venn Diagram</a></li>
+<li class="chapter" data-level="17.14" data-path="figure-2.html"><a href="figure-2.html#s3-j-boxplot"><i class="fa fa-check"></i><b>17.14</b> (S3 J) Boxplot</a></li>
+<li class="chapter" data-level="17.15" data-path="figure-2.html"><a href="figure-2.html#s3-k-pathway-based-analysis"><i class="fa fa-check"></i><b>17.15</b> (S3 K) Pathway-based Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="figure-3.html"><a href="figure-3.html"><i class="fa fa-check"></i><b>18</b> Figure 3</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="figure-3.html"><a href="figure-3.html#a-gsva-scores-for-metabolic-pathways"><i class="fa fa-check"></i><b>18.1</b> (A) GSVA Scores for Metabolic Pathways</a></li>
+<li class="chapter" data-level="18.2" data-path="figure-3.html"><a href="figure-3.html#b-mutations-and-metabolites"><i class="fa fa-check"></i><b>18.2</b> (B) Mutations and Metabolites</a></li>
+<li class="chapter" data-level="18.3" data-path="figure-3.html"><a href="figure-3.html#c-idh12-and-etv6-mutations"><i class="fa fa-check"></i><b>18.3</b> (C) IDH1/2 and ETV6 Mutations</a></li>
+<li class="chapter" data-level="18.4" data-path="figure-3.html"><a href="figure-3.html#d-fusions-and-metabolites"><i class="fa fa-check"></i><b>18.4</b> (D) Fusions and Metabolites</a></li>
+<li class="chapter" data-level="18.5" data-path="figure-3.html"><a href="figure-3.html#e-bcr-abl1-fusion"><i class="fa fa-check"></i><b>18.5</b> (E) BCR-ABL1 Fusion</a></li>
+<li class="chapter" data-level="18.6" data-path="figure-3.html"><a href="figure-3.html#s4-a-metabolic-gene-heatmap"><i class="fa fa-check"></i><b>18.6</b> (S4 A) Metabolic Gene Heatmap</a></li>
+<li class="chapter" data-level="18.7" data-path="figure-3.html"><a href="figure-3.html#s4-b-correlation-within-bmmc-samples"><i class="fa fa-check"></i><b>18.7</b> (S4 B) Correlation Within BMMC Samples</a></li>
+<li class="chapter" data-level="18.8" data-path="figure-3.html"><a href="figure-3.html#s4-c-correlation-of-mrna-expression-of-metabolic-genes"><i class="fa fa-check"></i><b>18.8</b> (S4 C) Correlation of mRNA Expression of Metabolic Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="figure-4.html"><a href="figure-4.html"><i class="fa fa-check"></i><b>19</b> Figure 4</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="figure-4.html"><a href="figure-4.html#a-schematic-workflow"><i class="fa fa-check"></i><b>19.1</b> (A) Schematic Workflow</a></li>
+<li class="chapter" data-level="19.2" data-path="figure-4.html"><a href="figure-4.html#b-discrimination-of-bcp-all-clusters"><i class="fa fa-check"></i><b>19.2</b> (B) Discrimination of BCP-ALL Clusters</a></li>
+<li class="chapter" data-level="19.3" data-path="figure-4.html"><a href="figure-4.html#c-os-in-75-bcp-all-patients"><i class="fa fa-check"></i><b>19.3</b> (C) OS in 75 BCP-ALL patients</a></li>
+<li class="chapter" data-level="19.4" data-path="figure-4.html"><a href="figure-4.html#d-multivariate-cox-analysis"><i class="fa fa-check"></i><b>19.4</b> (D) Multivariate Cox Analysis</a></li>
+<li class="chapter" data-level="19.5" data-path="figure-4.html"><a href="figure-4.html#e-subnetwork-between-bc3-and-bc12"><i class="fa fa-check"></i><b>19.5</b> (E) Subnetwork between BC3 and BC1/2</a></li>
+<li class="chapter" data-level="19.6" data-path="figure-4.html"><a href="figure-4.html#f-discrimination-of-t-all-clusters"><i class="fa fa-check"></i><b>19.6</b> (F) Discrimination of T-ALL Clusters</a></li>
+<li class="chapter" data-level="19.7" data-path="figure-4.html"><a href="figure-4.html#g-os-of-tc12"><i class="fa fa-check"></i><b>19.7</b> (G) OS of TC1/2</a></li>
+<li class="chapter" data-level="19.8" data-path="figure-4.html"><a href="figure-4.html#h-subnetwork-between-tc2-and-tc1"><i class="fa fa-check"></i><b>19.8</b> (H) Subnetwork between TC2 and TC1</a></li>
+<li class="chapter" data-level="19.9" data-path="figure-4.html"><a href="figure-4.html#s5-a-clusters-of-bcp-all"><i class="fa fa-check"></i><b>19.9</b> (S5 A) Clusters of BCP-ALL</a></li>
+<li class="chapter" data-level="19.10" data-path="figure-4.html"><a href="figure-4.html#s5-e-waterfall-plot-of-bc123"><i class="fa fa-check"></i><b>19.10</b> (S5 E) Waterfall plot of BC1/2/3</a></li>
+<li class="chapter" data-level="19.11" data-path="figure-4.html"><a href="figure-4.html#s5-h-da-score-of-bc3-cluster"><i class="fa fa-check"></i><b>19.11</b> (S5 H) DA-score of BC3 cluster</a></li>
+<li class="chapter" data-level="19.12" data-path="figure-4.html"><a href="figure-4.html#s5-i-j-msea-of-bc123"><i class="fa fa-check"></i><b>19.12</b> (S5 I-J) MSEA of BC1/2/3</a></li>
+<li class="chapter" data-level="19.13" data-path="figure-4.html"><a href="figure-4.html#s6-a-clusters-of-t-all"><i class="fa fa-check"></i><b>19.13</b> (S6 A) Clusters of T-ALL</a></li>
+<li class="chapter" data-level="19.14" data-path="figure-4.html"><a href="figure-4.html#s6-e-f-rfs-and-efs-of-tc12"><i class="fa fa-check"></i><b>19.14</b> (S6 E-F) RFS and EFS of TC1/2</a></li>
+<li class="chapter" data-level="19.15" data-path="figure-4.html"><a href="figure-4.html#s6-h-multivariate-cox-analysis-of-tc12"><i class="fa fa-check"></i><b>19.15</b> (S6 H) Multivariate Cox Analysis of TC1/2</a></li>
+<li class="chapter" data-level="19.16" data-path="figure-4.html"><a href="figure-4.html#s6-i-heatmap-of-tc12"><i class="fa fa-check"></i><b>19.16</b> (S6 I) Heatmap of TC1/2</a></li>
+<li class="chapter" data-level="19.17" data-path="figure-4.html"><a href="figure-4.html#s6-j-da-score-of-tc12"><i class="fa fa-check"></i><b>19.17</b> (S6 J) DA score of TC1/2</a></li>
+<li class="chapter" data-level="19.18" data-path="figure-4.html"><a href="figure-4.html#s6-k-l-msea-of-tc12"><i class="fa fa-check"></i><b>19.18</b> (S6 K-L) MSEA of TC1/2</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ALL metabolism analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="serum-2020-data-preprocess" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> serum: 2020 data preprocess<a href="serum-2020-data-preprocess.html#serum-2020-data-preprocess" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="positive" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> positive<a href="serum-2020-data-preprocess.html#positive" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>合并2020年serum的positive数据及对na值的填充</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="serum-2020-data-preprocess.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="serum-2020-data-preprocess.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="serum-2020-data-preprocess.html#cb1-3" tabindex="-1"></a>path<span class="ot">=</span><span class="st">&quot;/Users/guituantuan/Desktop/projects/junyu/raw_data/serum_2020/positive/&quot;</span></span>
+<span id="cb1-4"><a href="serum-2020-data-preprocess.html#cb1-4" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(path)</span>
+<span id="cb1-5"><a href="serum-2020-data-preprocess.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="serum-2020-data-preprocess.html#cb1-6" tabindex="-1"></a>mydata1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(path,file[<span class="dv">1</span>]),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">header=</span>F,<span class="at">check.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="serum-2020-data-preprocess.html#cb1-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>,<span class="st">&quot;V3&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="serum-2020-data-preprocess.html#cb1-8" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;V2&quot;</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="serum-2020-data-preprocess.html#cb1-9" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="at">sep=</span><span class="st">&quot;POS&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;s1&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="serum-2020-data-preprocess.html#cb1-10" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;s1&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;B&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="serum-2020-data-preprocess.html#cb1-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample_name=</span><span class="fu">paste0</span>(<span class="st">&quot;id_&quot;</span>,B)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="serum-2020-data-preprocess.html#cb1-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;B&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-13"><a href="serum-2020-data-preprocess.html#cb1-13" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample_name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="serum-2020-data-preprocess.html#cb1-14" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="serum-2020-data-preprocess.html#cb1-15" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href="serum-2020-data-preprocess.html#cb1-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Metabolites=</span>id_NA)</span>
+<span id="cb1-17"><a href="serum-2020-data-preprocess.html#cb1-17" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="serum-2020-data-preprocess.html#cb1-18" tabindex="-1"></a>mydata2 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(path,file[<span class="dv">2</span>]),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">header=</span>F,<span class="at">check.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="serum-2020-data-preprocess.html#cb1-19" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>,<span class="st">&quot;V3&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="serum-2020-data-preprocess.html#cb1-20" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;V2&quot;</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="serum-2020-data-preprocess.html#cb1-21" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="at">sep=</span><span class="st">&quot;POS&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;s1&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-22"><a href="serum-2020-data-preprocess.html#cb1-22" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;s1&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;B&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="serum-2020-data-preprocess.html#cb1-23" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample_name=</span><span class="fu">paste0</span>(<span class="st">&quot;id_&quot;</span>,B)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="serum-2020-data-preprocess.html#cb1-24" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;B&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-25"><a href="serum-2020-data-preprocess.html#cb1-25" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample_name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-26"><a href="serum-2020-data-preprocess.html#cb1-26" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-27"><a href="serum-2020-data-preprocess.html#cb1-27" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="serum-2020-data-preprocess.html#cb1-28" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Metabolites=</span>id_NA)</span>
+<span id="cb1-29"><a href="serum-2020-data-preprocess.html#cb1-29" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="serum-2020-data-preprocess.html#cb1-30" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mydata1,mydata2)</span>
+<span id="cb1-31"><a href="serum-2020-data-preprocess.html#cb1-31" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="fu">length</span>(file)){</span>
+<span id="cb1-32"><a href="serum-2020-data-preprocess.html#cb1-32" tabindex="-1"></a>  mydata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(path,file[i]),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">header=</span>F,<span class="at">check.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb1-33"><a href="serum-2020-data-preprocess.html#cb1-33" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>,<span class="st">&quot;V3&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-34"><a href="serum-2020-data-preprocess.html#cb1-34" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;V2&quot;</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-35"><a href="serum-2020-data-preprocess.html#cb1-35" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="at">sep=</span><span class="st">&quot;POS&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;s1&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-36"><a href="serum-2020-data-preprocess.html#cb1-36" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;s1&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;B&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-37"><a href="serum-2020-data-preprocess.html#cb1-37" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample_name=</span><span class="fu">paste0</span>(<span class="st">&quot;id_&quot;</span>,B)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-38"><a href="serum-2020-data-preprocess.html#cb1-38" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;B&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-39"><a href="serum-2020-data-preprocess.html#cb1-39" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample_name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-40"><a href="serum-2020-data-preprocess.html#cb1-40" tabindex="-1"></a>    <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-41"><a href="serum-2020-data-preprocess.html#cb1-41" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-42"><a href="serum-2020-data-preprocess.html#cb1-42" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Metabolites=</span>id_NA)</span>
+<span id="cb1-43"><a href="serum-2020-data-preprocess.html#cb1-43" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(result,mydata)</span>
+<span id="cb1-44"><a href="serum-2020-data-preprocess.html#cb1-44" tabindex="-1"></a>}</span>
+<span id="cb1-45"><a href="serum-2020-data-preprocess.html#cb1-45" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb1-46"><a href="serum-2020-data-preprocess.html#cb1-46" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="serum-2020-data-preprocess.html#cb1-47" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb1-48"><a href="serum-2020-data-preprocess.html#cb1-48" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mean=</span><span class="fu">apply</span>(result[,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(result)],<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="fu">return</span>(<span class="fu">mean</span>(<span class="fu">as.numeric</span>(x),<span class="at">na.rm=</span>T))})) <span class="sc">%&gt;%</span></span>
+<span id="cb1-49"><a href="serum-2020-data-preprocess.html#cb1-49" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(mean)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-50"><a href="serum-2020-data-preprocess.html#cb1-50" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(Metabolites,<span class="at">.keep_all=</span>T) <span class="sc">%&gt;%</span></span>
+<span id="cb1-51"><a href="serum-2020-data-preprocess.html#cb1-51" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;mean&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-52"><a href="serum-2020-data-preprocess.html#cb1-52" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;Metabolites&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-53"><a href="serum-2020-data-preprocess.html#cb1-53" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_if</span>(is.character, as.numeric)</span>
+<span id="cb1-54"><a href="serum-2020-data-preprocess.html#cb1-54" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="serum-2020-data-preprocess.html#cb1-55" tabindex="-1"></a>result1[result1<span class="sc">==</span><span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb1-56"><a href="serum-2020-data-preprocess.html#cb1-56" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="serum-2020-data-preprocess.html#cb1-57" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;/Users/guituantuan/Desktop/projects/script/impute.R&quot;</span>)</span>
+<span id="cb1-58"><a href="serum-2020-data-preprocess.html#cb1-58" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="serum-2020-data-preprocess.html#cb1-59" tabindex="-1"></a>result_impute <span class="ot">&lt;-</span> <span class="fu">meta_impute</span>(result1) <span class="sc">%&gt;%</span></span>
+<span id="cb1-60"><a href="serum-2020-data-preprocess.html#cb1-60" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-61"><a href="serum-2020-data-preprocess.html#cb1-61" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;Metabolites&quot;</span>)</span>
+<span id="cb1-62"><a href="serum-2020-data-preprocess.html#cb1-62" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="serum-2020-data-preprocess.html#cb1-63" tabindex="-1"></a><span class="co">#添加内标</span></span>
+<span id="cb1-64"><a href="serum-2020-data-preprocess.html#cb1-64" tabindex="-1"></a>interior <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;/Users/guituantuan/Desktop/projects/junyu/raw_data/serum_2020/2020PSposALLchecked_IS.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-65"><a href="serum-2020-data-preprocess.html#cb1-65" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-66"><a href="serum-2020-data-preprocess.html#cb1-66" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;Sample Name&quot;</span>,<span class="st">&quot;Sample Type&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-67"><a href="serum-2020-data-preprocess.html#cb1-67" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;Original Filename&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="st">&quot;temp&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-68"><a href="serum-2020-data-preprocess.html#cb1-68" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;temp&quot;</span>,<span class="at">sep=</span><span class="st">&quot;[.]&quot;</span>,<span class="st">&quot;name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-69"><a href="serum-2020-data-preprocess.html#cb1-69" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">name=</span><span class="fu">paste0</span>(<span class="st">&quot;id_&quot;</span>,name)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-70"><a href="serum-2020-data-preprocess.html#cb1-70" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">sample_id=</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb1-71"><a href="serum-2020-data-preprocess.html#cb1-71" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample_id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-72"><a href="serum-2020-data-preprocess.html#cb1-72" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-73"><a href="serum-2020-data-preprocess.html#cb1-73" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-74"><a href="serum-2020-data-preprocess.html#cb1-74" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;Metabolites&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-75"><a href="serum-2020-data-preprocess.html#cb1-75" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">names</span>(result_impute))</span>
+<span id="cb1-76"><a href="serum-2020-data-preprocess.html#cb1-76" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="serum-2020-data-preprocess.html#cb1-77" tabindex="-1"></a>raw_1_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(result_impute,interior)</span>
+<span id="cb1-78"><a href="serum-2020-data-preprocess.html#cb1-78" tabindex="-1"></a><span class="fu">write.table</span>(raw_1_data,<span class="st">&quot;/Users/guituantuan/Desktop/projects/junyu/result/serum_2020/1.raw.AB.positive.txt&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">col.names=</span>T)</span></code></pre></div>
+</div>
+<div id="negative" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> negative<a href="serum-2020-data-preprocess.html#negative" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>合并2020年serum的positive数据及对na值的填充</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="serum-2020-data-preprocess.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-2"><a href="serum-2020-data-preprocess.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="serum-2020-data-preprocess.html#cb2-3" tabindex="-1"></a>path<span class="ot">=</span><span class="st">&quot;/Users/guituantuan/Desktop/projects/junyu/raw_data/serum_2020/negative/&quot;</span></span>
+<span id="cb2-4"><a href="serum-2020-data-preprocess.html#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="serum-2020-data-preprocess.html#cb2-5" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(path)</span>
+<span id="cb2-6"><a href="serum-2020-data-preprocess.html#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="serum-2020-data-preprocess.html#cb2-7" tabindex="-1"></a>mydata1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(path,file[<span class="dv">1</span>]),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">header=</span>F,<span class="at">check.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="serum-2020-data-preprocess.html#cb2-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>,<span class="st">&quot;V3&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="serum-2020-data-preprocess.html#cb2-9" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;V2&quot;</span>)</span>
+<span id="cb2-10"><a href="serum-2020-data-preprocess.html#cb2-10" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="serum-2020-data-preprocess.html#cb2-11" tabindex="-1"></a>mydata2 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(path,file[<span class="dv">2</span>]),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">header=</span>F,<span class="at">check.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="serum-2020-data-preprocess.html#cb2-12" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>,<span class="st">&quot;V3&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="serum-2020-data-preprocess.html#cb2-13" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;V2&quot;</span>)</span>
+<span id="cb2-14"><a href="serum-2020-data-preprocess.html#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="serum-2020-data-preprocess.html#cb2-15" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mydata1,mydata2)</span>
+<span id="cb2-16"><a href="serum-2020-data-preprocess.html#cb2-16" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="fu">length</span>(file)){</span>
+<span id="cb2-17"><a href="serum-2020-data-preprocess.html#cb2-17" tabindex="-1"></a>  mydata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(path,file[i]),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">header=</span>F,<span class="at">check.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="serum-2020-data-preprocess.html#cb2-18" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>,<span class="st">&quot;V3&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="serum-2020-data-preprocess.html#cb2-19" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;V2&quot;</span>)</span>
+<span id="cb2-20"><a href="serum-2020-data-preprocess.html#cb2-20" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">cbind</span>(result,mydata)</span>
+<span id="cb2-21"><a href="serum-2020-data-preprocess.html#cb2-21" tabindex="-1"></a>}</span>
+<span id="cb2-22"><a href="serum-2020-data-preprocess.html#cb2-22" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="serum-2020-data-preprocess.html#cb2-23" tabindex="-1"></a>result_temp <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb2-24"><a href="serum-2020-data-preprocess.html#cb2-24" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;V1&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="serum-2020-data-preprocess.html#cb2-25" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;V1&quot;</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="serum-2020-data-preprocess.html#cb2-26" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;sample_name&quot;</span>,<span class="at">sep=</span><span class="st">&quot;NEG&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;s1&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="serum-2020-data-preprocess.html#cb2-27" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;s1&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="st">&quot;B&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-28"><a href="serum-2020-data-preprocess.html#cb2-28" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sample_name=</span><span class="fu">paste0</span>(<span class="st">&quot;id_&quot;</span>,B)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-29"><a href="serum-2020-data-preprocess.html#cb2-29" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;B&quot;</span>)</span>
+<span id="cb2-30"><a href="serum-2020-data-preprocess.html#cb2-30" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="serum-2020-data-preprocess.html#cb2-31" tabindex="-1"></a>result_temp<span class="sc">$</span>mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(result_temp[,<span class="sc">-</span><span class="fu">which</span>(<span class="fu">names</span>(result_temp)<span class="sc">==</span><span class="st">&quot;sample_name&quot;</span>)],<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="fu">return</span>(<span class="fu">mean</span>(<span class="fu">as.numeric</span>(x),<span class="at">na.rm=</span>T))})</span>
+<span id="cb2-32"><a href="serum-2020-data-preprocess.html#cb2-32" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="serum-2020-data-preprocess.html#cb2-33" tabindex="-1"></a>result_temp_sample_mean <span class="ot">&lt;-</span> result_temp <span class="sc">%&gt;%</span></span>
+<span id="cb2-34"><a href="serum-2020-data-preprocess.html#cb2-34" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">as.numeric</span>(mean))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-35"><a href="serum-2020-data-preprocess.html#cb2-35" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(sample_name,<span class="at">.keep_all=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-36"><a href="serum-2020-data-preprocess.html#cb2-36" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;mean&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-37"><a href="serum-2020-data-preprocess.html#cb2-37" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;sample_name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-38"><a href="serum-2020-data-preprocess.html#cb2-38" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-39"><a href="serum-2020-data-preprocess.html#cb2-39" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb2-40"><a href="serum-2020-data-preprocess.html#cb2-40" tabindex="-1"></a>result_temp_sample_mean<span class="sc">$</span>mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(result_temp_sample_mean[,<span class="sc">-</span><span class="fu">which</span>(<span class="fu">names</span>(result_temp_sample_mean)<span class="sc">==</span><span class="st">&quot;id_NA&quot;</span>)],<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="fu">return</span>(<span class="fu">mean</span>(<span class="fu">as.numeric</span>(x),<span class="at">na.rm=</span>T))})</span>
+<span id="cb2-41"><a href="serum-2020-data-preprocess.html#cb2-41" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="serum-2020-data-preprocess.html#cb2-42" tabindex="-1"></a><span class="fu">rownames</span>(result_temp_sample_mean) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb2-43"><a href="serum-2020-data-preprocess.html#cb2-43" tabindex="-1"></a>result_temp_metabolties_mean <span class="ot">&lt;-</span> result_temp_sample_mean <span class="sc">%&gt;%</span></span>
+<span id="cb2-44"><a href="serum-2020-data-preprocess.html#cb2-44" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">as.numeric</span>(mean))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-45"><a href="serum-2020-data-preprocess.html#cb2-45" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(id_NA,<span class="at">.keep_all=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-46"><a href="serum-2020-data-preprocess.html#cb2-46" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;mean&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-47"><a href="serum-2020-data-preprocess.html#cb2-47" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;id_NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-48"><a href="serum-2020-data-preprocess.html#cb2-48" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_if</span>(is.character, as.numeric)</span>
+<span id="cb2-49"><a href="serum-2020-data-preprocess.html#cb2-49" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="serum-2020-data-preprocess.html#cb2-50" tabindex="-1"></a>result_temp_metabolties_mean[result_temp_metabolties_mean<span class="sc">==</span><span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb2-51"><a href="serum-2020-data-preprocess.html#cb2-51" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="serum-2020-data-preprocess.html#cb2-52" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> result_temp_metabolties_mean</span>
+<span id="cb2-53"><a href="serum-2020-data-preprocess.html#cb2-53" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="serum-2020-data-preprocess.html#cb2-54" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;/Users/guituantuan/Desktop/projects/script/impute.R&quot;</span>)</span>
+<span id="cb2-55"><a href="serum-2020-data-preprocess.html#cb2-55" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="serum-2020-data-preprocess.html#cb2-56" tabindex="-1"></a>result_impute <span class="ot">&lt;-</span> <span class="fu">meta_impute</span>(result1) <span class="sc">%&gt;%</span></span>
+<span id="cb2-57"><a href="serum-2020-data-preprocess.html#cb2-57" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-58"><a href="serum-2020-data-preprocess.html#cb2-58" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;Metabolites&quot;</span>)</span>
+<span id="cb2-59"><a href="serum-2020-data-preprocess.html#cb2-59" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="serum-2020-data-preprocess.html#cb2-60" tabindex="-1"></a><span class="co">#添加内标</span></span>
+<span id="cb2-61"><a href="serum-2020-data-preprocess.html#cb2-61" tabindex="-1"></a>interior <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;/Users/guituantuan/Desktop/projects/junyu/raw_data/serum_2020/2020PSnegALLchecked_IS.txt&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-62"><a href="serum-2020-data-preprocess.html#cb2-62" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-63"><a href="serum-2020-data-preprocess.html#cb2-63" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;Sample Name&quot;</span>,<span class="st">&quot;Sample Type&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-64"><a href="serum-2020-data-preprocess.html#cb2-64" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;Original Filename&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">&quot;</span>,<span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="st">&quot;temp&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-65"><a href="serum-2020-data-preprocess.html#cb2-65" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">&quot;temp&quot;</span>,<span class="at">sep=</span><span class="st">&quot;[.]&quot;</span>,<span class="st">&quot;name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-66"><a href="serum-2020-data-preprocess.html#cb2-66" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">name=</span><span class="fu">paste0</span>(<span class="st">&quot;id_&quot;</span>,name))</span>
+<span id="cb2-67"><a href="serum-2020-data-preprocess.html#cb2-67" tabindex="-1"></a>interior<span class="sc">$</span>mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(interior[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>],<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="fu">return</span>(<span class="fu">mean</span>(<span class="fu">as.numeric</span>(x),<span class="at">na.rm=</span>T))})</span>
+<span id="cb2-68"><a href="serum-2020-data-preprocess.html#cb2-68" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="serum-2020-data-preprocess.html#cb2-69" tabindex="-1"></a>interior_temp <span class="ot">&lt;-</span> interior <span class="sc">%&gt;%</span></span>
+<span id="cb2-70"><a href="serum-2020-data-preprocess.html#cb2-70" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(mean)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-71"><a href="serum-2020-data-preprocess.html#cb2-71" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(name,<span class="at">.keep_all=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-72"><a href="serum-2020-data-preprocess.html#cb2-72" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&quot;mean&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-73"><a href="serum-2020-data-preprocess.html#cb2-73" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;name&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-74"><a href="serum-2020-data-preprocess.html#cb2-74" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-75"><a href="serum-2020-data-preprocess.html#cb2-75" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-76"><a href="serum-2020-data-preprocess.html#cb2-76" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;Metabolites&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-77"><a href="serum-2020-data-preprocess.html#cb2-77" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">names</span>(result_impute))</span>
+<span id="cb2-78"><a href="serum-2020-data-preprocess.html#cb2-78" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="serum-2020-data-preprocess.html#cb2-79" tabindex="-1"></a>raw_1_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(result_impute,interior_temp)</span>
+<span id="cb2-80"><a href="serum-2020-data-preprocess.html#cb2-80" tabindex="-1"></a><span class="fu">write.table</span>(raw_1_data,<span class="st">&quot;/Users/guituantuan/Desktop/projects/junyu/result/serum_2020/1.raw.AB.negative.txt&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">col.names=</span>T)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="serum-2021-data-preprocess.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-serum_2020_positive.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

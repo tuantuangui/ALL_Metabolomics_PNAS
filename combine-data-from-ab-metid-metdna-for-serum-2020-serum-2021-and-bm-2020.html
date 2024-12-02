@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020 | untargeted metabolism analysis</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020 | untargeted metabolism analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020 | untargeted metabolism analysis" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Tuantuan Gui" />
+
+
+<meta name="date" content="2024-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="serum-2021-metid-data-anatation.html"/>
+<link rel="next" href="combine-data-from-positive-and-negative.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> the untargeted metabolism analysis</a></li>
+<li class="chapter" data-level="2" data-path="serum-2020-positive-data-preprocess.html"><a href="serum-2020-positive-data-preprocess.html"><i class="fa fa-check"></i><b>2</b> serum 2020 positive data preprocess</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="serum-2020-positive-data-preprocess.html"><a href="serum-2020-positive-data-preprocess.html#合并2020年serum的positive数据及对na值的填充"><i class="fa fa-check"></i><b>2.1</b> 合并2020年serum的positive数据及对na值的填充</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="serum-2020-negative-data-preprocess.html"><a href="serum-2020-negative-data-preprocess.html"><i class="fa fa-check"></i><b>3</b> serum 2020 negative data preprocess</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="serum-2020-negative-data-preprocess.html"><a href="serum-2020-negative-data-preprocess.html#合并2020年serum的positive数据及对na值的填充-1"><i class="fa fa-check"></i><b>3.1</b> 合并2020年serum的positive数据及对na值的填充</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="serum-2021-positive-data-preprocess.html"><a href="serum-2021-positive-data-preprocess.html"><i class="fa fa-check"></i><b>4</b> serum 2021 positive data preprocess</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="serum-2021-positive-data-preprocess.html"><a href="serum-2021-positive-data-preprocess.html#合并2021年serum的positive数据及对na值的填充"><i class="fa fa-check"></i><b>4.1</b> 合并2021年serum的positive数据及对na值的填充</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="serum-2021-negative-data-preprocess.html"><a href="serum-2021-negative-data-preprocess.html"><i class="fa fa-check"></i><b>5</b> serum 2021 negative data preprocess</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="serum-2021-negative-data-preprocess.html"><a href="serum-2021-negative-data-preprocess.html#合并2021年serum的negative数据及对na值的填充"><i class="fa fa-check"></i><b>5.1</b> 合并2021年serum的negative数据及对na值的填充</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="serum-2020-metid-data-anatation.html"><a href="serum-2020-metid-data-anatation.html"><i class="fa fa-check"></i><b>6</b> serum 2020 metID data anatation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="serum-2020-metid-data-anatation.html"><a href="serum-2020-metid-data-anatation.html#serum-2020-metid-data-anatation-1"><i class="fa fa-check"></i><b>6.1</b> serum 2020 metID data anatation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="serum-2021-metid-data-anatation.html"><a href="serum-2021-metid-data-anatation.html"><i class="fa fa-check"></i><b>7</b> serum 2021 metID data anatation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="serum-2021-metid-data-anatation.html"><a href="serum-2021-metid-data-anatation.html#serum-2021-metid-data-anatation-using-3-qc"><i class="fa fa-check"></i><b>7.1</b> serum 2021 metID data anatation using 3 QC</a></li>
+<li class="chapter" data-level="7.2" data-path="serum-2021-metid-data-anatation.html"><a href="serum-2021-metid-data-anatation.html#serum-2021-3-qc-anatation-filter"><i class="fa fa-check"></i><b>7.2</b> serum 2021 3 QC anatation filter</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html"><i class="fa fa-check"></i><b>8</b> combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020-1"><i class="fa fa-check"></i><b>8.1</b> combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="combine-data-from-positive-and-negative.html"><a href="combine-data-from-positive-and-negative.html"><i class="fa fa-check"></i><b>9</b> combine data from positive and negative</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="combine-data-from-positive-and-negative.html"><a href="combine-data-from-positive-and-negative.html#combine-data-from-positive-and-negative-1"><i class="fa fa-check"></i><b>9.1</b> combine data from positive and negative</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="combine-data-from-positive-and-negative.html"><a href="combine-data-from-positive-and-negative.html#rscript-51-combine_positive_negative_raw.r-resultv0224_serum_2020"><i class="fa fa-check"></i><b>9.1.1</b> Rscript 51-combine_positive_negative_raw.R result/v0224_serum_2020/</a></li>
+<li class="chapter" data-level="9.1.2" data-path="combine-data-from-positive-and-negative.html"><a href="combine-data-from-positive-and-negative.html#rscript-51-combine_positive_negative_raw.r-resultv0224_serum_2021"><i class="fa fa-check"></i><b>9.1.2</b> Rscript 51-combine_positive_negative_raw.R result/v0224_serum_2021/</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><i class="fa fa-check"></i><b>10</b> batch effection of data from serum 2020 and serum 2021 using sva</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html#batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva-1"><i class="fa fa-check"></i><b>10.1</b> batch effection of data from serum 2020 and serum 2021 using sva</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html"><a href="batch-effection-of-data-from-serum-2020-and-serum-2021-using-sva.html#rscript-55-combine_2020_2021_raw_sva_v0222.r-resultv0224_serum_2020-resultv0224_serum_2021-resultv0224_serum_combine_2020_2021"><i class="fa fa-check"></i><b>10.1.1</b> Rscript 55-combine_2020_2021_raw_sva_v0222.R result/v0224_serum_2020/ result/v0224_serum_2021/ result/v0224_serum_combine_2020_2021/</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bm-combine-positive-and-negative-data.html"><a href="bm-combine-positive-and-negative-data.html"><i class="fa fa-check"></i><b>11</b> BM combine positive and negative data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="bm-combine-positive-and-negative-data.html"><a href="bm-combine-positive-and-negative-data.html#serrf"><i class="fa fa-check"></i><b>11.1</b> SERRF</a></li>
+<li class="chapter" data-level="11.2" data-path="bm-combine-positive-and-negative-data.html"><a href="bm-combine-positive-and-negative-data.html#combination-of-bm-positive-and-negative-data"><i class="fa fa-check"></i><b>11.2</b> combination of BM positive and negative data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">untargeted metabolism analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020<a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020-1" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> combine data from AB metID metDNA for serum 2020, serum 2021 and BM 2020<a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rscript 50-combine_AB_metID_metDNA_v0223.R positive result/v0224_serum_2021
+Rscript 50-combine_AB_metID_metDNA_v0223.R positive result/v0224_serum_2020
+Rscript 50-combine_AB_metID_metDNA_v0223.R positive result/BM_2020</p>
+<p>Rscript 50-combine_AB_metID_metDNA_v0223.R negative result/v0224_serum_2021
+Rscript 50-combine_AB_metID_metDNA_v0223.R negative result/v0224_serum_2020
+Rscript 50-combine_AB_metID_metDNA_v0223.R negative result/BM_2020</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-1" tabindex="-1"></a>args<span class="ot">=</span><span class="fu">commandArgs</span>(T)</span>
+<span id="cb8-2"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-3" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;/Users/guituantuan/Desktop/projects/script/functions_v0211.R&quot;</span>)</span>
+<span id="cb8-4"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-5" tabindex="-1"></a><span class="co">#setwd(&quot;/Users/guituantuan/Desktop/projects/junyu/result/serum_2021&quot;)</span></span>
+<span id="cb8-6"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-6" tabindex="-1"></a><span class="fu">setwd</span>(args[<span class="dv">2</span>])</span>
+<span id="cb8-7"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-8" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;temp/&quot;</span>)</span>
+<span id="cb8-9"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-9" tabindex="-1"></a><span class="co">#读入所需的数据</span></span>
+<span id="cb8-10"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-10" tabindex="-1"></a>AB_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;1.raw.AB.&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;.txt&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-11" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-12"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-13" tabindex="-1"></a>peak_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(args[<span class="dv">1</span>],<span class="st">&quot;_peak_table.csv&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-14" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-15"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-15" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-16" tabindex="-1"></a>metID_annotation <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(args[<span class="dv">1</span>],<span class="st">&quot;_metID_annotation_table_filter.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-17"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-17" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-18"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-18" tabindex="-1"></a>metID_annotation<span class="sc">$</span>Compound_name <span class="ot">&lt;-</span> <span class="fu">compound_name_process</span>(metID_annotation<span class="sc">$</span>Compound_name)</span>
+<span id="cb8-19"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-19" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-20" tabindex="-1"></a>metDNA_annotation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">paste0</span>(args[<span class="dv">1</span>],<span class="st">&quot;_MRN.annotation.result.csv&quot;</span>),<span class="at">header=</span>T) <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-21" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(compound.name)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-22" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-23" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(score,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;Total.score&quot;</span>) <span class="sc">%&gt;%</span> <span class="do">### if the compound.name have more than 1 name, then preserve the first one</span></span>
+<span id="cb8-24"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-24" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(adduct,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;new_adduct&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-25"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-25" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(compound.name,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="st">&quot;Compound.name&quot;</span>)</span>
+<span id="cb8-26"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-26" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-27" tabindex="-1"></a>qc_intersect <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(args[<span class="dv">1</span>],<span class="st">&quot;_qc_intersect.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-28"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-28" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-29"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-29" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-30" tabindex="-1"></a><span class="co">#称转化为refmet名称</span></span>
+<span id="cb8-31"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-31" tabindex="-1"></a>intersect_sample <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(AB_data),qc_intersect<span class="sc">$</span>sample_id)</span>
+<span id="cb8-32"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-32" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-33" tabindex="-1"></a>AB_data_impute <span class="ot">&lt;-</span> AB_data <span class="sc">%&gt;%</span></span>
+<span id="cb8-34"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-34" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;Metabolites&quot;</span>,intersect_sample))</span>
+<span id="cb8-35"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-35" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-36" tabindex="-1"></a>metabolites_name <span class="ot">&lt;-</span> AB_data_impute<span class="sc">$</span>Metabolites</span>
+<span id="cb8-37"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-37" tabindex="-1"></a>AB_data_impute_name2refmet <span class="ot">&lt;-</span> <span class="fu">name2refmet</span>(metabolites_name)</span>
+<span id="cb8-38"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-38" tabindex="-1"></a>AB_name2refmet_result <span class="ot">&lt;-</span> <span class="fu">merge</span>(AB_data_impute_name2refmet,AB_data_impute,<span class="at">by.x=</span><span class="st">&quot;Input name&quot;</span>,<span class="at">by.y=</span><span class="st">&quot;Metabolites&quot;</span>,<span class="at">all.y=</span>T)</span>
+<span id="cb8-39"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-39" tabindex="-1"></a><span class="fu">write.table</span>(AB_name2refmet_result,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_AB_imputed_name2refmet.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb8-40"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-40" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-41" tabindex="-1"></a><span class="do">### metID结果和peak value对应上</span></span>
+<span id="cb8-42"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-42" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-43" tabindex="-1"></a>metID_peak_data_filter <span class="ot">&lt;-</span> peak_data <span class="sc">%&gt;%</span></span>
+<span id="cb8-44"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-44" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">%in%</span> metID_annotation<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb8-45"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-45" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>,<span class="st">&quot;mz&quot;</span>,<span class="st">&quot;rt&quot;</span>,intersect_sample))</span>
+<span id="cb8-46"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-46" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-47" tabindex="-1"></a>metID_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(metID_annotation,metID_peak_data_filter,<span class="at">by=</span><span class="st">&quot;name&quot;</span>,<span class="at">all.y=</span>T)</span>
+<span id="cb8-48"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-48" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-49" tabindex="-1"></a><span class="fu">write.table</span>(metID_data,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metID_peak_table_filter.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span>
+<span id="cb8-50"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-50" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-51" tabindex="-1"></a><span class="co">#把metID名称转化为refmet名称</span></span>
+<span id="cb8-52"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-52" tabindex="-1"></a>metID_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metID_peak_table_filter.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-53"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-53" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-54"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-54" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-55" tabindex="-1"></a>metabolites_name <span class="ot">&lt;-</span> metID_data<span class="sc">$</span>Compound_name</span>
+<span id="cb8-56"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-56" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-57" tabindex="-1"></a>metID_name2refmet <span class="ot">&lt;-</span> <span class="fu">name2refmet</span>(metabolites_name)</span>
+<span id="cb8-58"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-58" tabindex="-1"></a>metID_name2refmet_result <span class="ot">&lt;-</span> <span class="fu">merge</span>(metID_name2refmet,metID_data,<span class="at">by.x=</span><span class="st">&quot;Input name&quot;</span>,<span class="at">by.y=</span><span class="st">&quot;Compound_name&quot;</span>,<span class="at">all.y=</span>T)</span>
+<span id="cb8-59"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-59" tabindex="-1"></a><span class="fu">write.table</span>(metID_name2refmet_result,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metID_name2refmet.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb8-60"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-60" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-61" tabindex="-1"></a><span class="co">#对metDNA对应到peak上</span></span>
+<span id="cb8-62"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-62" tabindex="-1"></a></span>
+<span id="cb8-63"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-63" tabindex="-1"></a><span class="do">### if the compound.name have more than 1 name, then preserve the first one</span></span>
+<span id="cb8-64"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-64" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-65" tabindex="-1"></a><span class="cf">if</span> (args[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;negative&quot;</span>) {</span>
+<span id="cb8-66"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-66" tabindex="-1"></a>  metDNA_annotation_filter_temp <span class="ot">&lt;-</span> metDNA_annotation <span class="sc">%&gt;%</span></span>
+<span id="cb8-67"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-67" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(Total.score<span class="sc">&gt;</span><span class="fl">0.9</span>)</span>
+<span id="cb8-68"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-68" tabindex="-1"></a>}<span class="cf">else</span> <span class="cf">if</span> (args[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;positive&quot;</span>) {</span>
+<span id="cb8-69"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-69" tabindex="-1"></a>  metDNA_annotation_filter_temp <span class="ot">&lt;-</span> metDNA_annotation <span class="sc">%&gt;%</span></span>
+<span id="cb8-70"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-70" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(Total.score<span class="sc">&gt;</span><span class="fl">0.9</span>)</span>
+<span id="cb8-71"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-71" tabindex="-1"></a>}</span>
+<span id="cb8-72"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-72" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-73" tabindex="-1"></a><span class="do">## then unique the compound.name from the max score</span></span>
+<span id="cb8-74"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-74" tabindex="-1"></a>metDNA_annotation_filter <span class="ot">&lt;-</span> metDNA_annotation_filter_temp <span class="sc">%&gt;%</span></span>
+<span id="cb8-75"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-75" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-76"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-76" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(Total.score)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-77"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-77" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(Compound.name,<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-78"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-78" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>Compound.name<span class="sc">==</span><span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-79"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-79" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;Compound.name&quot;</span>,<span class="st">&quot;name&quot;</span>))</span>
+<span id="cb8-80"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-80" tabindex="-1"></a></span>
+<span id="cb8-81"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-81" tabindex="-1"></a></span>
+<span id="cb8-82"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-82" tabindex="-1"></a><span class="fu">write.table</span>(metDNA_annotation_filter,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_MRN.annotation.filter.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span>
+<span id="cb8-83"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-83" tabindex="-1"></a></span>
+<span id="cb8-84"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-84" tabindex="-1"></a>metDNA_peak_data_filter <span class="ot">&lt;-</span> peak_data <span class="sc">%&gt;%</span></span>
+<span id="cb8-85"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-85" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>name <span class="sc">%in%</span> metID_data<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb8-86"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-86" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">%in%</span> metDNA_annotation_filter<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb8-87"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-87" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>,<span class="st">&quot;mz&quot;</span>,<span class="st">&quot;rt&quot;</span>,intersect_sample))</span>
+<span id="cb8-88"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-88" tabindex="-1"></a></span>
+<span id="cb8-89"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-89" tabindex="-1"></a>metDNA_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(metDNA_annotation_filter,metDNA_peak_data_filter,<span class="at">by=</span><span class="st">&quot;name&quot;</span>,<span class="at">all.y=</span>T)</span>
+<span id="cb8-90"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-90" tabindex="-1"></a></span>
+<span id="cb8-91"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-91" tabindex="-1"></a><span class="fu">write.table</span>(metDNA_data,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metDNA_peak_table_filter.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span>
+<span id="cb8-92"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-92" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-93" tabindex="-1"></a><span class="co">#把metDNA名称转化为refmet名称</span></span>
+<span id="cb8-94"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-94" tabindex="-1"></a>metDNA_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metDNA_peak_table_filter.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-95"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-95" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-96"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-96" tabindex="-1"></a></span>
+<span id="cb8-97"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-97" tabindex="-1"></a>metabolites_name <span class="ot">&lt;-</span> metDNA_data<span class="sc">$</span>Compound.name</span>
+<span id="cb8-98"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-98" tabindex="-1"></a>metDNA_name2refmet <span class="ot">&lt;-</span> <span class="fu">name2refmet</span>(metabolites_name)</span>
+<span id="cb8-99"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-99" tabindex="-1"></a>metDNA_name2refmet_result <span class="ot">&lt;-</span> <span class="fu">merge</span>(metDNA_name2refmet,metDNA_data,<span class="at">by.x=</span><span class="st">&quot;Input name&quot;</span>,<span class="at">by.y=</span><span class="st">&quot;Compound.name&quot;</span>,<span class="at">all.y=</span>T)</span>
+<span id="cb8-100"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-100" tabindex="-1"></a><span class="fu">write.table</span>(metDNA_name2refmet_result,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metDNA_name2refmet.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb8-101"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-101" tabindex="-1"></a></span>
+<span id="cb8-102"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-102" tabindex="-1"></a><span class="do">## 名字换了之后又出现了一些重复的代谢物，需要把这些代谢物uniq</span></span>
+<span id="cb8-103"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-103" tabindex="-1"></a></span>
+<span id="cb8-104"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-104" tabindex="-1"></a>AB_name2refmet_result <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_AB_imputed_name2refmet.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-105"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-105" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-106"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-106" tabindex="-1"></a></span>
+<span id="cb8-107"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-107" tabindex="-1"></a>AB_name2refmet_result_uniq <span class="ot">&lt;-</span> <span class="fu">uniq_refmet</span>(AB_name2refmet_result)</span>
+<span id="cb8-108"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-108" tabindex="-1"></a></span>
+<span id="cb8-109"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-109" tabindex="-1"></a><span class="fu">write.table</span>(AB_name2refmet_result_uniq,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_AB_imputed_name2refmet_uniq.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span>
+<span id="cb8-110"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-110" tabindex="-1"></a></span>
+<span id="cb8-111"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-111" tabindex="-1"></a>metID_name2refmet_result <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metID_name2refmet.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-112"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-112" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-113"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-113" tabindex="-1"></a>metID_name2refmet_result_uniq <span class="ot">&lt;-</span> <span class="fu">uniq_refmet</span>(metID_name2refmet_result)</span>
+<span id="cb8-114"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-114" tabindex="-1"></a><span class="fu">write.table</span>(metID_name2refmet_result_uniq,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metID_name2refmet_uniq.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span>
+<span id="cb8-115"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-115" tabindex="-1"></a></span>
+<span id="cb8-116"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-116" tabindex="-1"></a>metDNA_name2refmet_result <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metDNA_name2refmet.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-117"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-117" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-118"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-118" tabindex="-1"></a>metDNA_name2refmet_result_uniq <span class="ot">&lt;-</span> <span class="fu">uniq_refmet</span>(metDNA_name2refmet_result)</span>
+<span id="cb8-119"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-119" tabindex="-1"></a><span class="fu">write.table</span>(metDNA_name2refmet_result_uniq,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metDNA_name2refmet_uniq.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">row.names=</span>F)</span>
+<span id="cb8-120"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-120" tabindex="-1"></a></span>
+<span id="cb8-121"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-121" tabindex="-1"></a><span class="co">#合并ab，metid和metdna结果</span></span>
+<span id="cb8-122"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-122" tabindex="-1"></a>AB_name2refmet_result_uniq <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_AB_imputed_name2refmet_uniq.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-123"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-123" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-124"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-124" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">level=</span><span class="dv">1</span>)</span>
+<span id="cb8-125"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-125" tabindex="-1"></a></span>
+<span id="cb8-126"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-126" tabindex="-1"></a>metID_name2refmet_result_uniq <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metID_name2refmet_uniq.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-127"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-127" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-128"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-128" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>refmet_name <span class="sc">%in%</span> AB_name2refmet_result_uniq<span class="sc">$</span>refmet_name) <span class="sc">%&gt;%</span></span>
+<span id="cb8-129"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-129" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">level=</span><span class="dv">2</span>)</span>
+<span id="cb8-130"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-130" tabindex="-1"></a></span>
+<span id="cb8-131"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-131" tabindex="-1"></a>metDNA_name2refmet_result_uniq <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_metDNA_name2refmet_uniq.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-132"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-132" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-133"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-133" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>refmet_name <span class="sc">%in%</span> <span class="fu">c</span>(AB_name2refmet_result_uniq<span class="sc">$</span>refmet_name,metID_name2refmet_result_uniq<span class="sc">$</span>refmet_name)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-134"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-134" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">level=</span><span class="dv">4</span>)</span>
+<span id="cb8-135"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-135" tabindex="-1"></a></span>
+<span id="cb8-136"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-136" tabindex="-1"></a>uniq_name <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(intersect,<span class="fu">list</span>(<span class="fu">names</span>(AB_name2refmet_result_uniq),<span class="fu">names</span>(metID_name2refmet_result_uniq),<span class="fu">names</span>(metDNA_name2refmet_result_uniq)))</span>
+<span id="cb8-137"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-137" tabindex="-1"></a></span>
+<span id="cb8-138"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-138" tabindex="-1"></a>AB_name2refmet_result_uniq <span class="ot">&lt;-</span> AB_name2refmet_result_uniq <span class="sc">%&gt;%</span></span>
+<span id="cb8-139"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-139" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(uniq_name)</span>
+<span id="cb8-140"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-140" tabindex="-1"></a></span>
+<span id="cb8-141"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-141" tabindex="-1"></a>metID_name2refmet_result_uniq <span class="ot">&lt;-</span> metID_name2refmet_result_uniq <span class="sc">%&gt;%</span></span>
+<span id="cb8-142"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-142" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(uniq_name)</span>
+<span id="cb8-143"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-143" tabindex="-1"></a></span>
+<span id="cb8-144"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-144" tabindex="-1"></a>metDNA_name2refmet_result_uniq <span class="ot">&lt;-</span> metDNA_name2refmet_result_uniq  <span class="sc">%&gt;%</span></span>
+<span id="cb8-145"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-145" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(uniq_name)</span>
+<span id="cb8-146"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-146" tabindex="-1"></a></span>
+<span id="cb8-147"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-147" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(AB_name2refmet_result_uniq,metID_name2refmet_result_uniq,metDNA_name2refmet_result_uniq)</span>
+<span id="cb8-148"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-148" tabindex="-1"></a><span class="fu">write.table</span>(all,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_all_result.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">row.names =</span> F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb8-149"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-149" tabindex="-1"></a></span>
+<span id="cb8-150"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-150" tabindex="-1"></a>all <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_all_result.txt&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-151"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-151" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb8-152"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-152" tabindex="-1"></a></span>
+<span id="cb8-153"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-153" tabindex="-1"></a>level_result <span class="ot">&lt;-</span> all <span class="sc">%&gt;%</span></span>
+<span id="cb8-154"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-154" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;refmet_name&quot;</span>,<span class="st">&quot;level&quot;</span>,<span class="st">&quot;formula&quot;</span>,<span class="st">&quot;exactmass&quot;</span>,<span class="st">&quot;super_class&quot;</span>,<span class="st">&quot;main_class&quot;</span>,<span class="st">&quot;sub_class&quot;</span>,<span class="st">&quot;class_index&quot;</span>))</span>
+<span id="cb8-155"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-155" tabindex="-1"></a></span>
+<span id="cb8-156"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-156" tabindex="-1"></a><span class="fu">write.table</span>(level_result,<span class="fu">paste0</span>(<span class="st">&quot;temp/&quot;</span>,args[<span class="dv">1</span>],<span class="st">&quot;_level_anno.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">row.names =</span> F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb8-157"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-157" tabindex="-1"></a></span>
+<span id="cb8-158"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-158" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-159" tabindex="-1"></a><span class="co">#把数据调成serrf所需要的样子</span></span>
+<span id="cb8-160"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-160" tabindex="-1"></a>all_for_serrf <span class="ot">&lt;-</span> all <span class="sc">%&gt;%</span></span>
+<span id="cb8-161"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-161" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;Input name&quot;</span>,<span class="st">&quot;formula&quot;</span>,<span class="st">&quot;exactmass&quot;</span>,<span class="st">&quot;super_class&quot;</span>,<span class="st">&quot;main_class&quot;</span>,<span class="st">&quot;sub_class&quot;</span>,<span class="st">&quot;class_index&quot;</span>))</span>
+<span id="cb8-162"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-162" tabindex="-1"></a><span class="fu">names</span>(all_for_serrf)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb8-163"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-163" tabindex="-1"></a></span>
+<span id="cb8-164"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-164" tabindex="-1"></a>qc_intersect_filter <span class="ot">&lt;-</span> qc_intersect <span class="sc">%&gt;%</span></span>
+<span id="cb8-165"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-165" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_id <span class="sc">%in%</span> intersect_sample) <span class="sc">%&gt;%</span></span>
+<span id="cb8-166"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-166" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(time)</span>
+<span id="cb8-167"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-167" tabindex="-1"></a>qc_intersect_filter<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">nrow</span>(qc_intersect_filter))</span>
+<span id="cb8-168"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-168" tabindex="-1"></a></span>
+<span id="cb8-169"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-169" tabindex="-1"></a>all_for_serrf_filter <span class="ot">&lt;-</span> all_for_serrf <span class="sc">%&gt;%</span></span>
+<span id="cb8-170"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-170" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;label&quot;</span>,qc_intersect_filter<span class="sc">$</span>sample_id))</span>
+<span id="cb8-171"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-171" tabindex="-1"></a></span>
+<span id="cb8-172"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-172" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;batch&quot;</span>,qc_intersect_filter<span class="sc">$</span>batch)</span>
+<span id="cb8-173"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-173" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>,qc_intersect_filter<span class="sc">$</span>type)</span>
+<span id="cb8-174"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-174" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,qc_intersect_filter<span class="sc">$</span>time)</span>
+<span id="cb8-175"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-175" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(all_for_serrf_filter))</span>
+<span id="cb8-176"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-176" tabindex="-1"></a></span>
+<span id="cb8-177"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-177" tabindex="-1"></a>all_result_temp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(batch,type,time,label,all_for_serrf_filter)</span>
+<span id="cb8-178"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-178" tabindex="-1"></a></span>
+<span id="cb8-179"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-179" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(all_for_serrf_filter))))</span>
+<span id="cb8-180"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-180" tabindex="-1"></a>serrf_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(number,all_result_temp)</span>
+<span id="cb8-181"><a href="combine-data-from-ab-metid-metdna-for-serum-2020-serum-2021-and-bm-2020.html#cb8-181" tabindex="-1"></a><span class="fu">write.table</span>(serrf_data,<span class="fu">paste0</span>(args[<span class="dv">1</span>],<span class="st">&quot;_for_serrf.txt&quot;</span>),<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">col.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="serum-2021-metid-data-anatation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="combine-data-from-positive-and-negative.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-combine_AB_metID_metDNA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
